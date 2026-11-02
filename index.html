@@ -282,7 +282,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-off
     </div>
   </section>
 
-  <div class="bridge" data-bridge="Broadway Bridge" style="--deck:#b8322a"><span class="pier" style="left:12%"></span><span class="pier" style="right:22%"></span><div class="deck"></div><div class="shade"></div><h2>Broadway Bridge<small>Downtown. Easy oar.</small></h2></div>
+  <div class="bridge" data-bridge="Broadway Bridge" style="--deck:#b8322a"><span class="pier" style="left:12%"></span><span class="pier" style="right:22%"></span><div class="deck"></div><div class="shade"></div><h2>Broadway Bridge<small>Downtown, and the end of my row.</small></h2></div>
 
   <footer class="end" id="hello" data-from="13799" data-to="14099">
     <h2>Say hello</h2>
@@ -531,7 +531,7 @@ function frame(now){
   if(now-rateShown>500){rateShown=now; document.getElementById('hRate').textContent=Math.round(rateSm);}
   if(next){document.getElementById('hNext').textContent=next[0].replace(' Bridge','').replace('Railroad','Rail');
     const km=(next[1]-m)/1000; document.getElementById('hDist').textContent=(km>=1?km.toFixed(1)+' km':Math.round(km*1000)+' m')+' to the bridge';}
-  else {document.getElementById('hNext').textContent='Downtown';document.getElementById('hDist').textContent='easy oar';}
+  else {document.getElementById('hNext').textContent='Downtown';document.getElementById('hDist').textContent='end of the row';}
   const atEnd=narrow&&endEl.getBoundingClientRect().top<H*0.8; // on phones the readout would sit on the closing wordmark
   document.documentElement.style.setProperty('--instr', scrollY>H*0.25&&!atEnd?1:0);
   requestAnimationFrame(frame);
