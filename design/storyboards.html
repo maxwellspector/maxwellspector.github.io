@@ -1,0 +1,528 @@
+<title>maxwellspector.com Storyboards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Hanken+Grotesk:wght@400;500&family=Anton&family=Work+Sans:wght@400;600&family=Albert+Sans:wght@400;600&family=Unbounded:wght@700&family=Manrope:wght@400;600&family=Libre+Franklin:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: a working storyboard wall. Neutral page so each direction's own palette carries its frames. */
+:root{
+  --bg:#f2f3f1; --panel:#e7e9e6; --ink:#16191a; --muted:#596063; --accent:#1d6a55; --flag:#9a5b00; --flagbg:#f6e7cf;
+  --ui:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121514; --panel:#1c201f; --ink:#e8ebe9; --muted:#9aa3a0; --accent:#5fc4a4; --flag:#f0b65a; --flagbg:#3a2c14; color-scheme:dark } }
+:root[data-theme="dark"]{ --bg:#121514; --panel:#1c201f; --ink:#e8ebe9; --muted:#9aa3a0; --accent:#5fc4a4; --flag:#f0b65a; --flagbg:#3a2c14; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--ui);margin:0}
+.wrap{max-width:1360px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:56px 96px}
+h1{font-size:clamp(34px,5vw,64px);line-height:1;letter-spacing:-.03em;margin:0 0 20px;font-weight:600;text-wrap:balance}
+h2{font-size:clamp(26px,3vw,38px);letter-spacing:-.02em;line-height:1.05;margin:0;font-weight:600;text-wrap:balance}
+h3{font-size:18px;margin:0 0 8px;font-weight:600}
+p{margin:0 0 12px;max-width:68ch}
+.lede{font-size:clamp(17px,1.6vw,20px);color:var(--ink)}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+.top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:start;margin-bottom:72px}
+@media (max-width:900px){.top{grid-template-columns:1fr;gap:32px}}
+.check{background:var(--panel);padding:24px;border-radius:4px}
+.tl{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px;font-size:14.5px}
+.tl li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px}
+.tl b{font-weight:600;font-variant-numeric:tabular-nums}
+.tl .q{background:var(--flagbg);color:var(--flag);border-radius:3px;padding:2px 8px;margin-inline:-8px}
+.carry{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.carry span{background:var(--panel);padding:4px 10px;border-radius:99px;font-size:14px}
+
+.dir{padding-top:56px;margin-top:56px;border-top:6px solid var(--panel)}
+.dhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:24px}
+@media (max-width:900px){.dhead{grid-template-columns:1fr}}
+.dletter{font-size:14px;color:var(--muted);margin-bottom:6px}
+.idea{font-size:17px;margin:0}
+.idea em{font-style:normal;font-weight:600}
+.frames{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1100px){.frames{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.frames{grid-template-columns:1fr}}
+figure{margin:0}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.45}
+figcaption b{color:var(--ink);font-weight:600}
+.specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:24px;font-size:14.5px}
+@media (max-width:900px){.specs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.specs{grid-template-columns:1fr}}
+.specs h3{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:4px}
+.sw{display:flex;gap:4px;margin-top:6px}.sw i{width:26px;height:26px;border-radius:3px;display:block;outline:1px solid rgba(127,127,127,.25)}
+.next{margin-top:88px;background:var(--panel);padding:28px;border-radius:4px}
+.next ol{margin:8px 0 0;padding-left:20px}.next li{margin-bottom:6px;max-width:72ch}
+
+/* ===== Frames (each is its own single-theme world) ===== */
+.fr{aspect-ratio:16/10;container-type:inline-size;position:relative;overflow:hidden;border-radius:3px;max-width:100%}
+.fr *{box-sizing:border-box}
+.c{position:absolute}
+@keyframes up{from{transform:translateY(40%);opacity:0}to{transform:none;opacity:1}}
+@keyframes fade{0%,100%{opacity:.25}50%{opacity:1}}
+
+/* A — Spectrum */
+.A{background:#eeecea;color:#333231;font-family:"Hanken Grotesk",sans-serif}
+.A .nav{top:4cqw;left:4cqw;right:4cqw;display:flex;justify-content:space-between;font-size:2.3cqw}
+.A .name{left:0;right:0;top:50%;transform:translateY(-55%);text-align:center;font-weight:500;font-size:11.2cqw;letter-spacing:-.05em;line-height:.9;white-space:nowrap}
+.A .name span{display:inline-block;animation:up 1s cubic-bezier(.2,.8,.2,1) both}
+.A .sun{display:inline-block;width:.66em;height:.66em;border-radius:50%;background:#e8b23c;vertical-align:-.02em;margin:0 .02em;position:relative}
+.A .sun::after{content:"";position:absolute;inset:0;border-radius:50%;background:#e8b23c;animation:ring 2.8s ease-out infinite}
+@keyframes ring{from{transform:scale(1);opacity:.6}to{transform:scale(1.9);opacity:0}}
+.A .sub{left:4cqw;bottom:4cqw;font-size:2.4cqw;max-width:48cqw;line-height:1.35}
+.A svg{position:absolute;inset:0;width:100%;height:100%}
+.A .ray{stroke-dasharray:120;stroke-dashoffset:120;animation:draw 4s ease-out infinite}
+@keyframes draw{0%{stroke-dashoffset:120}45%,100%{stroke-dashoffset:0}}
+.A .t{top:4cqw;left:4cqw;font-size:3.6cqw;font-weight:500;letter-spacing:-.03em;line-height:1}
+.A .stripes{inset:0;display:flex;flex-direction:column}
+.A .stripes div{flex:1;display:flex;justify-content:space-between;align-items:center;padding:0 4cqw;font-size:2.2cqw;color:#fff;animation:slide 5s cubic-bezier(.2,.8,.2,1) infinite both}
+.A .stripes .big{flex:3.4;align-items:flex-start;flex-direction:column;justify-content:center;gap:.6cqw}
+.A .stripes .big b{font-size:4.4cqw;font-weight:500;letter-spacing:-.03em;line-height:1}
+@keyframes slide{0%{transform:translateX(-102%)}18%,100%{transform:none}}
+.A .foot{left:0;right:0;bottom:-2.2cqw;font-size:14.6cqw;font-weight:500;letter-spacing:-.055em;line-height:1;text-align:center;white-space:nowrap}
+.A .bands{left:4cqw;right:4cqw;top:30%;display:flex;height:2cqw}
+.A .bands i{flex:1;transform-origin:left;animation:grow 3.5s ease-out infinite both}
+@keyframes grow{0%{transform:scaleX(0)}30%,100%{transform:none}}
+.A .links{left:4cqw;right:4cqw;top:10%;display:flex;justify-content:space-between;font-size:2.4cqw}
+
+/* B — Waterline */
+@property --sea{syntax:"<percentage>";inherits:true;initial-value:50%}
+.B{background:#191919;color:#fff;font-family:"Work Sans",sans-serif}
+.B.water{background:#fff;--sea:50%;animation:bob 4.5s ease-in-out infinite}
+@keyframes bob{0%,100%{--sea:47%}50%{--sea:55%}}
+.B .seafield{left:0;right:0;bottom:0;top:var(--sea);background:#0c7866}
+.B .hl{inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:Anton,sans-serif;font-size:13cqw;line-height:.86;text-transform:uppercase;letter-spacing:-.01em;padding-top:2cqw}
+.B .hl.above{color:#191919;clip-path:inset(0 0 calc(100% - var(--sea)) 0)}
+.B .hl.below{color:#ffe927;clip-path:inset(var(--sea) 0 0 0)}
+.B .navb{top:3.4cqw;left:4cqw;right:4cqw;display:flex;justify-content:space-between;font-size:2.2cqw;color:#191919;font-weight:600}
+.B .subb{left:4cqw;bottom:4cqw;font-size:2.3cqw;max-width:46cqw;line-height:1.35}
+.B .cta{right:4cqw;bottom:3.6cqw;background:#191919;color:#fff;font-size:2.2cqw;padding:1.2cqw 2.2cqw;font-weight:600}
+.B .lanes{inset:18% 0 14% 0;display:grid;grid-template-rows:repeat(4,1fr)}
+.B .lanes i:nth-child(odd){background:#242424}
+.B .marks{inset:18% 4cqw 14% 4cqw;display:flex;justify-content:space-between}
+.B .marks div{font-family:Anton,sans-serif;font-size:2.6cqw;line-height:1;display:flex;flex-direction:column;justify-content:space-between;opacity:.9}
+.B .marks small{font-family:"Work Sans",sans-serif;font-size:1.8cqw;opacity:.7}
+.B .shell{top:52%;left:4cqw;width:14cqw;height:1.4cqw;background:#ffe927;border-radius:50%;animation:race 7s linear infinite}
+.B .shell::before,.B .shell::after{content:"";position:absolute;left:45%;width:1cqw;height:6cqw;background:#ffe927;top:-2.3cqw;transform-origin:50% 50%;animation:oar 2.5s ease-in-out infinite}
+.B .shell::after{animation-delay:-.05s;opacity:.6}
+@keyframes race{from{transform:translateX(0)}to{transform:translateX(66cqw)}}
+@keyframes oar{0%,100%{transform:rotate(-35deg)}50%{transform:rotate(35deg)}}
+.B .split{top:3.4cqw;right:4cqw;font-family:Anton,sans-serif;font-size:6cqw;line-height:1;text-align:right}
+.B .split small{display:block;font-family:"Work Sans";font-size:1.8cqw;opacity:.7}
+.B .tb{top:3.4cqw;left:4cqw;font-family:Anton,sans-serif;font-size:4.6cqw;text-transform:uppercase;line-height:.9}
+.B .posters{inset:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.B .posters div{display:flex;flex-direction:column;justify-content:flex-end;padding:3cqw;animation:rise 6s cubic-bezier(.2,.8,.2,1) infinite both}
+.B .posters div:nth-child(2){animation-delay:.12s}.B .posters div:nth-child(3){animation-delay:.24s}
+@keyframes rise{0%{transform:translateY(100%)}15%,100%{transform:none}}
+.B .posters b{font-family:Anton,sans-serif;font-size:9cqw;line-height:.86;font-weight:400;text-transform:uppercase}
+.B .posters small{font-size:1.9cqw;line-height:1.3;margin-top:1cqw}
+.B .rate{left:4cqw;top:50%;transform:translateY(-50%);font-family:Anton,sans-serif;font-size:15cqw;line-height:.8}
+.B .rate small{display:block;font-family:"Work Sans";font-size:2.2cqw;margin-top:1.4cqw}
+.B .rbtns{left:4cqw;bottom:4cqw;display:flex;gap:1.2cqw}
+.B .rbtns button{font:600 2.4cqw/1 "Work Sans",sans-serif;padding:1.2cqw 2cqw;border:0;background:#242424;color:#fff;cursor:pointer;border-radius:0}
+.B .rbtns button[aria-pressed="true"]{background:#0c7866}
+.B .rbtns button:focus-visible{outline:2px solid #ffe927;outline-offset:2px}
+.B .rower{right:8cqw;top:50%;width:30cqw;height:30cqw;transform:translateY(-50%)}
+.B .rower .hull{position:absolute;left:0;right:0;top:48%;height:4%;background:#ffe927;border-radius:50%}
+.B .rower .o{position:absolute;left:50%;top:10%;width:1.2cqw;height:80%;margin-left:-.6cqw;background:#fff;transform-origin:50% 50%;animation:oar var(--d,2.5s) ease-in-out infinite}
+
+/* C — Datasheet */
+.C{background:#0a0a0a;color:#efefef;font-family:"Albert Sans",sans-serif}
+.C .col{left:20%;top:16%;width:58%}
+.C .model{font-size:2cqw;color:#8c8c8c;margin-bottom:2cqw}
+.C .model b{color:#b11226;font-weight:600}
+.C .h{font-weight:600;font-size:5.6cqw;letter-spacing:-.035em;line-height:1;margin-bottom:2cqw}
+.C .h span{display:block;animation:up .9s cubic-bezier(.2,.8,.2,1) both}.C .h span+span{animation-delay:.11s}
+.C .s{font-size:2.2cqw;line-height:1.45;color:#efefef;max-width:44cqw}
+.C .btn{display:inline-block;margin-top:2.4cqw;background:#b11226;color:#fff;font-size:2cqw;padding:1.1cqw 2cqw;font-weight:600}
+.C table{position:absolute;left:6cqw;right:6cqw;top:16%;border-collapse:collapse;font-size:1.95cqw}
+.C caption{text-align:left;font-weight:600;font-size:3cqw;letter-spacing:-.02em;padding-bottom:1.6cqw;caption-side:top}
+.C td{padding:.9cqw 0;border-bottom:1px solid #2a2a2a;vertical-align:top}
+.C td:first-child{color:#8c8c8c;width:40%}
+.C tr{animation:up .6s ease-out both}
+.C tr:nth-child(2){animation-delay:.07s}.C tr:nth-child(3){animation-delay:.14s}.C tr:nth-child(4){animation-delay:.21s}.C tr:nth-child(5){animation-delay:.28s}.C tr:nth-child(6){animation-delay:.35s}
+.C .iv{position:absolute;left:6cqw;top:7cqw;right:6cqw;bottom:13cqw}
+.C .iv svg{width:100%;height:100%;overflow:visible}
+.C .curve{stroke-dasharray:300;stroke-dashoffset:300;animation:draw2 4s ease-out infinite}
+@keyframes draw2{0%{stroke-dashoffset:300}55%,100%{stroke-dashoffset:0}}
+.C .tc{top:3cqw;left:6cqw;font-weight:600;font-size:3cqw;letter-spacing:-.02em}
+.C .slider{left:6cqw;right:6cqw;bottom:3.4cqw;display:flex;gap:2cqw;align-items:center;font-size:1.9cqw;color:#8c8c8c}
+.C input[type=range]{flex:1;accent-color:#b11226;height:3cqw;min-width:0}
+.C.inv{background:#efefef;color:#0a0a0a}
+.C .certs{left:6cqw;right:6cqw;top:20%;display:grid;grid-template-columns:repeat(2,1fr);gap:2.4cqw 4cqw}
+.C .certs div{font-size:2cqw;line-height:1.35}.C .certs b{display:block;font-size:2.6cqw;letter-spacing:-.02em}
+.C .warr{left:6cqw;bottom:5cqw;font-size:2.4cqw;color:#b11226;font-weight:600}
+
+/* D — Daylight */
+.D{background:#edccbe;color:#351a2b;font-family:"Manrope",sans-serif}
+.D .w1,.D .w2{font-family:Unbounded,sans-serif;font-weight:700;font-size:8cqw;letter-spacing:-.02em;line-height:1;text-transform:uppercase}
+.D .w1{top:4cqw;left:4cqw}.D .w2{bottom:4cqw;right:4cqw}
+.D .dot{width:7cqw;height:7cqw;border-radius:50%;background:#351a2b;position:absolute}
+.D .copy{left:4cqw;top:46%;font-size:2.3cqw;line-height:1.4;max-width:40cqw}
+.D .now{left:4cqw;top:62%;font-size:1.9cqw;opacity:.8}
+.D .panel{left:50%;width:26cqw;margin-left:-13cqw;aspect-ratio:4/5;background:#351a2b;color:#edccbe;padding:2.2cqw;display:flex;flex-direction:column;justify-content:flex-end;font-size:1.9cqw;line-height:1.35;animation:scrollp 6s linear infinite}
+.D .panel b{font-family:Unbounded,sans-serif;font-size:2.8cqw;line-height:1;margin-bottom:1cqw;font-weight:700}
+@keyframes scrollp{from{top:100%}to{top:-55%}}
+.D.night{background:#351a2b;color:#edccbe}
+.D .moon{right:10cqw;top:9cqw;width:8cqw;height:8cqw;border-radius:50%;background:#edccbe;box-shadow:none;overflow:hidden}
+.D .moon::after{content:"";position:absolute;inset:0;border-radius:50%;background:#351a2b;transform:translate(30%,-12%);animation:phase 8s ease-in-out infinite}
+@keyframes phase{0%,100%{transform:translate(30%,-12%)}50%{transform:translate(60%,-12%)}}
+.D .after{left:4cqw;top:24%;font-family:Unbounded,sans-serif;font-weight:700;font-size:5.6cqw;line-height:1;text-transform:uppercase}
+.D .alist{left:4cqw;top:40%;font-size:2.2cqw;line-height:1.6;display:grid;grid-template-columns:repeat(2,auto);gap:0 5cqw}
+.D .alist span{animation:up .7s ease-out both}
+@keyframes arcmove{0%{transform:rotate(-80deg)}100%{transform:rotate(80deg)}}
+.D .pivot{position:absolute;left:50%;top:115%;width:0;height:0;animation:arcmove 9s linear infinite}
+.D .pivot.mid{animation:none;transform:rotate(-25deg)}
+.D .pivot.noon{animation:none;transform:rotate(0)}
+.D .pivot .dot{left:-3.5cqw;top:-55cqw}
+
+/* E — Contact sheet */
+.E{background:#f7f9fa;color:#1f3038;font-family:"Source Serif 4",serif}
+.E .ring{inset:0}
+.E .ring i{position:absolute;display:block;animation:fade 4s ease-in-out infinite}
+.E .ec{left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:44cqw}
+.E .ec b{display:block;font-family:"Libre Franklin",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.035em;font-size:5.4cqw;line-height:.92}
+.E .ec small{display:block;font-size:2.1cqw;margin-top:1.4cqw;line-height:1.35}
+.E .sheet{left:4cqw;right:4cqw;top:5cqw;display:grid;gap:2.2cqw}
+.E .row small{font-size:1.9cqw;display:block;margin-bottom:.8cqw}
+.E .row div{display:flex;gap:.8cqw;height:7.6cqw}
+.E .row i{display:block;height:100%;animation:up .5s ease-out both}
+.E .loupe{width:26cqw;height:26cqw;border-radius:50%;background:#0d7480;color:#fff;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4.6cqw;font-size:1.9cqw;text-align:center;line-height:1.25;animation:roam 7s ease-in-out infinite;top:14%;left:10%}
+.E .loupe span{max-width:16cqw}
+@keyframes roam{0%,100%{transform:translate(0,0)}33%{transform:translate(32cqw,6cqw)}66%{transform:translate(52cqw,-2cqw)}}
+.E .grid{inset:4cqw;display:grid;grid-template-columns:repeat(8,1fr);gap:.8cqw}
+.E .grid i{display:block;aspect-ratio:3/2}
+.E .note{left:6cqw;right:6cqw;top:6cqw}
+.E .note b{display:block;font-family:"Libre Franklin",sans-serif;font-weight:700;font-size:4.6cqw;letter-spacing:-.035em;line-height:.95;margin-bottom:2cqw}
+.E .note p{font-size:2.15cqw;line-height:1.5;max-width:52cqw;margin:0 0 1.4cqw}
+.E .note .shot{position:absolute;right:0;top:0;width:28cqw;aspect-ratio:3/4;background:#ecf0f2;padding:1.4cqw;display:grid;gap:1cqw;align-content:start}
+.E .note .shot i{display:block;height:2.2cqw;background:#cfd8dc}.E .note .shot i:nth-child(1){background:#0d7480;width:60%}
+
+@media (prefers-reduced-motion: reduce){
+  .fr *, .fr *::before, .fr *::after, .fr{animation:none !important;transition:none !important}
+  .A .ray,.C .curve{stroke-dashoffset:0}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Five ways to rebuild maxwellspector.com</h1>
+      <p class="lede">Each direction below takes one thing that is only yours and turns it into the site's design. The frames are rough storyboards of four moments in the scroll. They move to show the motion idea, and they use real content where I have it.</p>
+      <p class="muted">Pick one, or pick a hero from one and a career section from another. The type and colours are proposals that can be swapped. Every direction carries the same content:</p>
+      <div class="carry"><span>Who and what, first screen</span><span>Now: Anza</span><span>Career, 2011 to now</span><span>Things I build: Harmoni, homelab</span><span>Before product: biology</span><span>Off hours</span><span>Say hello</span></div>
+    </div>
+    <aside class="check" aria-labelledby="tlh">
+      <h3 id="tlh">Career timeline as I have it</h3>
+      <p class="muted" style="font-size:14.5px;margin:0">From your old site, your 2020 résumé and the public LinkedIn page. The highlighted rows need your input before anything goes live.</p>
+      <ul class="tl">
+        <li><b>2002–06</b><span>BA Biology, Lewis &amp; Clark</span></li>
+        <li><b>2006–09</b><span>Research Assistant II, OHSU stroke lab · novice men's coach, L&amp;C</span></li>
+        <li><b>2009–11</b><span>MBA, Portland State</span></li>
+        <li><b>2011–14</b><span>Janrain, product marketing, then PM</span></li>
+        <li><b>2014–16</b><span>Webtrends, Sr. Product Marketing Manager</span></li>
+        <li><b>2016–21</b><span>Act-On, Sr. PM, then Principal PM</span></li>
+        <li><b>2021–22</b><span>Conviva, Group Product Manager</span></li>
+        <li><b>2022–?</b><span class="q">Aurora Solar, Group PM. End month?</span></li>
+        <li><b>2024–25?</b><span class="q">Between roles? How do you want this shown?</span></li>
+        <li><b>2025</b><span class="q">Omnidian. Start month and title? Not on the old site.</span></li>
+        <li><b>Nov 2025–</b><span>Anza Renewables, Director of Platform Product Management</span></li>
+      </ul>
+    </aside>
+  </header>
+
+  <!-- ============ A ============ -->
+  <section class="dir" aria-labelledby="dA">
+    <div class="dhead">
+      <div><div class="dletter">Direction A · name as a monument</div><h2 id="dA">Spectrum</h2></div>
+      <p class="idea">On this page, <em>the name Spector, and the seven companies of a career in clean light</em>, becomes <em>a beam that splits into seven bands</em>. The O in your name is the sun; as you scroll, its light passes through a prism (biology) and fans out into Janrain, Webtrends, Act-On, Conviva, Aurora, Omnidian and Anza.</p>
+    </div>
+    <div class="frames">
+      <figure><div class="fr A" role="img" aria-label="Storyboard: the name Maxwell Spector set huge with a pulsing sun disc as the O">
+        <div class="c nav"><span>Work · Builds · Off hours</span><span>Say hello</span></div>
+        <div class="c name"><span>Maxwell Spect<i class="sun"></i>r</span></div>
+        <div class="c sub">Director of Platform Product at Anza Renewables. Biologist by training, Portland by choice.</div>
+      </div><figcaption><b>1. Arrive.</b> The name rises line by line; the sun-O breathes. One sentence says who and what.</figcaption></figure>
+
+      <figure><div class="fr A" role="img" aria-label="Storyboard: a beam hits a prism and splits into seven coloured bands">
+        <svg viewBox="0 0 160 100" aria-hidden="true">
+          <line class="ray" x1="0" y1="56" x2="64" y2="56" stroke="#333231" stroke-width="1.6"/>
+          <polygon points="64,40 82,70 46,70" fill="#e4e1dd" stroke="none"/>
+          <g stroke-width="2.4" fill="none">
+            <line class="ray" x1="74" y1="56" x2="160" y2="30" stroke="#b5483b"/>
+            <line class="ray" x1="74" y1="56" x2="160" y2="39" stroke="#d07a2e" style="animation-delay:.1s"/>
+            <line class="ray" x1="74" y1="56" x2="160" y2="48" stroke="#d2a634" style="animation-delay:.2s"/>
+            <line class="ray" x1="74" y1="56" x2="160" y2="57" stroke="#6f9a4d" style="animation-delay:.3s"/>
+            <line class="ray" x1="74" y1="56" x2="160" y2="66" stroke="#3f7f8c" style="animation-delay:.4s"/>
+            <line class="ray" x1="74" y1="56" x2="160" y2="75" stroke="#3c5a9a" style="animation-delay:.5s"/>
+            <line class="ray" x1="74" y1="56" x2="160" y2="84" stroke="#6b4f8f" style="animation-delay:.6s"/>
+          </g>
+          <text x="48" y="80" font-size="4.2" fill="#333231" font-family="Hanken Grotesk">Biology, 2002–09</text>
+        </svg>
+        <div class="c t">One beam,<br>seven companies</div>
+      </div><figcaption><b>2. Refract.</b> Scroll draws the beam into the prism. The bands fan out one by one, scrubbed to your scroll position.</figcaption></figure>
+
+      <figure><div class="fr A" role="img" aria-label="Storyboard: the bands become stacked career rows, Anza expanded">
+        <div class="c stripes">
+          <div style="background:#b5483b"><span>Janrain</span><span>2011–14</span></div>
+          <div style="background:#d07a2e;animation-delay:.06s"><span>Webtrends</span><span>2014–16</span></div>
+          <div style="background:#c99a2a;animation-delay:.12s"><span>Act-On</span><span>2016–21</span></div>
+          <div style="background:#6f9a4d;animation-delay:.18s"><span>Conviva</span><span>2021–22</span></div>
+          <div style="background:#3f7f8c;animation-delay:.24s"><span>Aurora Solar</span><span>2022–?</span></div>
+          <div style="background:#3c5a9a;animation-delay:.30s"><span>Omnidian</span><span>2025</span></div>
+          <div class="big" style="background:#6b4f8f;animation-delay:.36s"><b>Anza Renewables</b><span>Director of Platform Product. Building the foundation for a marketplace where solar and storage buyers meet suppliers.</span></div>
+        </div>
+      </div><figcaption><b>3. Read a band.</b> Each band is a career row. Tap or hover to widen one and read what you did there. The live thing.</figcaption></figure>
+
+      <figure><div class="fr A" role="img" aria-label="Storyboard: footer with the name cropped huge at the bottom">
+        <div class="c links"><span>LinkedIn</span><span>GitHub</span><span>Email</span></div>
+        <div class="c bands"><i style="background:#b5483b"></i><i style="background:#d07a2e;animation-delay:.05s"></i><i style="background:#d2a634;animation-delay:.1s"></i><i style="background:#6f9a4d;animation-delay:.15s"></i><i style="background:#3f7f8c;animation-delay:.2s"></i><i style="background:#3c5a9a;animation-delay:.25s"></i><i style="background:#6b4f8f;animation-delay:.3s"></i></div>
+        <div class="c foot">Maxwell Spector</div>
+      </div><figcaption><b>4. Close.</b> The bands recombine into one line; the name returns at full width, cropped by the bottom edge.</figcaption></figure>
+    </div>
+    <div class="specs">
+      <div><h3>Type</h3><span style="font:500 22px/1 'Hanken Grotesk';letter-spacing:-.04em">Hanken Grotesk</span><br><span class="muted">One family, medium weight, very tight.</span></div>
+      <div><h3>Colour</h3>Three stone greys. The spectrum is the only colour on the page.<div class="sw"><i style="background:#eeecea"></i><i style="background:#cdc3b6"></i><i style="background:#333231"></i><i style="background:#e8b23c"></i><i style="background:#b5483b"></i><i style="background:#3f7f8c"></i><i style="background:#6b4f8f"></i></div></div>
+      <div><h3>Signature motion</h3>A scroll-scrubbed refraction: the beam and the bands are tied to your scroll, so they rewind when you scroll back up.</div>
+      <div><h3>Best if… / trade-off</h3>You want something clever and quick to read. The trade-off is that it's light on photos unless we add an Off hours gallery.</div>
+    </div>
+  </section>
+
+  <!-- ============ B ============ -->
+  <section class="dir" aria-labelledby="dB">
+    <div class="dhead">
+      <div><div class="dletter">Direction B · type-only statement, loud flat poster</div><h2 id="dB">Waterline</h2></div>
+      <p class="idea">On this page, <em>thirteen years on the Willamette and a 2007 conference title as a coach</em> become <em>a waterline that cuts your name in half, and a 2,000-metre race piece that is your career</em>. Big poster type, flat primaries, and a stroke rate you can set.</p>
+    </div>
+    <div class="frames">
+      <figure><div class="fr B water" role="img" aria-label="Storyboard: Maxwell Spector in huge condensed capitals, cut by a bobbing waterline that recolours the letters">
+        <div class="c seafield"></div>
+        <div class="c navb"><span>Maxwell Spector</span><span>Race · Off the water · Contact</span></div>
+        <div class="c hl above" aria-hidden="true"><span>Maxwell</span><span>Spector</span></div>
+        <div class="c hl below" aria-hidden="true"><span>Maxwell</span><span>Spector</span></div>
+        <div class="c subb">Product leader in clean energy, building the platform at Anza Renewables.</div>
+        <div class="c cta">Say hello</div>
+      </div><figcaption><b>1. Arrive.</b> The waterline rises and falls slowly through the second line; letters change colour below the water.</figcaption></figure>
+
+      <figure><div class="fr B" role="img" aria-label="Storyboard: a racing shell moves along lanes past 500 metre markers labelled with career years">
+        <div class="c lanes"><i></i><i></i><i></i><i></i></div>
+        <div class="c marks">
+          <div>START<small>2011 Janrain</small></div>
+          <div>500<small>2016 Act-On</small></div>
+          <div>1000<small>2021 Conviva</small></div>
+          <div>1500<small>2022 Aurora</small></div>
+          <div>FINISH?<small>2025 Anza</small></div>
+        </div>
+        <div class="c shell"></div>
+        <div class="c tb">The race<br>piece</div>
+        <div class="c split">1:58.6<small>split / 500m</small></div>
+      </div><figcaption><b>2. The race piece.</b> The career as a 2k: the shell travels as you scroll, and each 500m marker opens a chapter.</figcaption></figure>
+
+      <figure><div class="fr B" role="img" aria-label="Storyboard: three flat poster panels in red, blue and yellow for brewing, making and cooking">
+        <div class="c posters">
+          <div style="background:#d71e1e"><b>Brew</b><small>Grainfather, since my 21st birthday</small></div>
+          <div style="background:#1e4bd7"><b>Make</b><small>Wood, a 3D printer, a mostly printed CNC</small></div>
+          <div style="background:#ffe927;color:#111"><b>Cook</b><small>Sourdough, sous vide, smoke</small></div>
+        </div>
+      </div><figcaption><b>3. Off the water.</b> Interests as poster fields that rise in a stagger. Each opens a short story with a photo.</figcaption></figure>
+
+      <figure><div class="fr B" role="img" aria-label="Storyboard: set the stroke rate with three buttons that change the rowing animation speed">
+        <div class="c rate"><span class="rv">24</span><small>strokes per minute</small></div>
+        <div class="c rower" aria-hidden="true"><div class="hull"></div><div class="o"></div></div>
+        <div class="c rbtns" role="group" aria-label="Stroke rate">
+          <button type="button" data-r="18" aria-pressed="false">18 paddle</button>
+          <button type="button" data-r="24" aria-pressed="true">24 steady</button>
+          <button type="button" data-r="34" aria-pressed="false">34 sprint</button>
+        </div>
+      </div><figcaption><b>4. The live thing.</b> Set the stroke rate and the whole page's motion takes that tempo. Try the buttons.</figcaption></figure>
+    </div>
+    <div class="specs">
+      <div><h3>Type</h3><span style="font:400 26px/1 Anton;text-transform:uppercase">Anton</span> + <span style="font:400 16px 'Work Sans'">Work Sans</span><br><span class="muted">Condensed poster capitals, plain text.</span></div>
+      <div><h3>Colour</h3>Charcoal with flat primaries assigned to whole panels.<div class="sw"><i style="background:#191919"></i><i style="background:#ffffff"></i><i style="background:#0c7866"></i><i style="background:#d71e1e"></i><i style="background:#1e4bd7"></i><i style="background:#ffe927"></i></div></div>
+      <div><h3>Signature motion</h3>A masked headline rise, the bobbing waterline, and one global tempo set by stroke rate.</div>
+      <div><h3>Best if… / trade-off</h3>You want the most fun and personality. It reads more "person" than "executive", which may be what you want, or may not.</div>
+    </div>
+  </section>
+
+  <!-- ============ C ============ -->
+  <section class="dir" aria-labelledby="dC">
+    <div class="dhead">
+      <div><div class="dletter">Direction C · the quiet instrument</div><h2 id="dC">Datasheet</h2></div>
+      <p class="idea">On this page, <em>the module datasheet, the document Anza's marketplace is built around</em>, becomes <em>a deadpan spec sheet for a product leader</em>: rated output, operating environment, an I-V curve of a career, certifications and a warranty. Quiet, dark, exact, and funny once you notice.</p>
+    </div>
+    <div class="frames">
+      <figure><div class="fr C" role="img" aria-label="Storyboard: narrow column on black, model line MS-2026 and a two-line headline">
+        <div class="c col">
+          <div class="model">Model <b>MS-2026</b> · Director series</div>
+          <div class="h"><span>Maxwell Spector,</span><span>product leader.</span></div>
+          <div class="s">Fifteen years turning messy markets into products people pay for. Now building the platform at Anza Renewables.</div>
+          <div class="btn">Read the datasheet</div>
+        </div>
+      </div><figcaption><b>1. Arrive.</b> Almost nothing: a narrow column, a model number, two lines rising from their baseline.</figcaption></figure>
+
+      <figure><div class="fr C" role="img" aria-label="Storyboard: a specification table with role, installation and operating environment">
+        <table>
+          <caption>Electrical characteristics</caption>
+          <tr><td>Nominal role</td><td>Director, Platform Product Management</td></tr>
+          <tr><td>Current installation</td><td>Anza Renewables, Nov 2025 to present</td></tr>
+          <tr><td>Operating range</td><td>B2B SaaS, marketplaces, solar and storage</td></tr>
+          <tr><td>Rated output</td><td>30+ products and features shipped</td></tr>
+          <tr><td>Environment</td><td>Portland, Oregon. Rain-rated.</td></tr>
+          <tr><td>Origin</td><td>Molecular biology, OHSU stroke research</td></tr>
+        </table>
+      </div><figcaption><b>2. The spec table.</b> Career and skills as a real table. Rows type in one after another.</figcaption></figure>
+
+      <figure><div class="fr C" role="img" aria-label="Storyboard: an I-V style curve of career scope over time with an irradiance slider">
+        <div class="c tc">Scope vs. years</div>
+        <div class="iv"><svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="0" y1="100" x2="200" y2="100" stroke="#3a3a3a"/><line x1="0" y1="0" x2="0" y2="100" stroke="#3a3a3a"/>
+          <g class="cg" style="transform-origin:0 100px;transition:transform .5s cubic-bezier(.2,.8,.2,1)">
+          <path class="curve" d="M0,92 C40,88 70,74 100,58 S160,24 178,14 L196,10" fill="none" stroke="#efefef" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+          <circle cx="178" cy="14" r="2.6" fill="#b11226"/>
+          </g>
+          <text x="2" y="98" font-size="6" fill="#8c8c8c">2011</text><text x="176" y="98" font-size="6" fill="#8c8c8c">2026</text>
+        </svg></div>
+        <div class="c slider"><label for="irr">Irradiance</label><input id="irr" type="range" min="40" max="100" value="100"><span>Pmax: Anza</span></div>
+      </div><figcaption><b>3. The live thing.</b> An I-V curve of the career, labelled by chapter. Drag the slider to change the curve.</figcaption></figure>
+
+      <figure><div class="fr C inv" role="img" aria-label="Storyboard: certifications on an off-white field with a warranty line">
+        <div class="c tc" style="color:#0a0a0a">Certifications</div>
+        <div class="c certs">
+          <div><b>MBA</b>Portland State, 2011</div>
+          <div><b>BA, Biology</b>Lewis &amp; Clark, 2006</div>
+          <div><b>SAFe 4 PO/PM</b>Scaled Agile, 2018</div>
+          <div><b>Continuous Interviewing</b>Product Talk, 2019</div>
+        </div>
+        <div class="c warr">25-year linear performance warranty. Say hello →</div>
+      </div><figcaption><b>4. Close.</b> The page inverts to off-white for education and contact. The warranty line is the sign-off.</figcaption></figure>
+    </div>
+    <div class="specs">
+      <div><h3>Type</h3><span style="font:600 22px/1 'Albert Sans';letter-spacing:-.03em">Albert Sans</span><br><span class="muted">Geometric, one family, small sizes doing the work.</span></div>
+      <div><h3>Colour</h3>Near-black, off-white, one deep crimson used three times on the page.<div class="sw"><i style="background:#0a0a0a"></i><i style="background:#151515"></i><i style="background:#efefef"></i><i style="background:#8c8c8c"></i><i style="background:#b11226"></i></div></div>
+      <div><h3>Signature motion</h3>Slow and exact: lines rise, rows type in, and the curve draws itself. Nothing bounces.</div>
+      <div><h3>Best if… / trade-off</h3>You want recruiters and peers in clean energy to get the joke and respect it. The trade-off is that it's the least warm of the five.</div>
+    </div>
+  </section>
+
+  <!-- ============ D ============ -->
+  <section class="dir" aria-labelledby="dD">
+    <div class="dhead">
+      <div><div class="dletter">Direction D · the pinned poster</div><h2 id="dD">Daylight</h2></div>
+      <p class="idea">On this page, <em>a career that moved toward the sun, from Janrain to Aurora Solar to Anza</em>, becomes <em>a day that passes as you scroll</em>. Your name is pinned to two corners while the sun crosses between them, from dawn to noon (now) to night (off hours). The opening sky matches the real sun over Portland at the moment of the visit.</p>
+    </div>
+    <div class="frames">
+      <figure><div class="fr D" role="img" aria-label="Storyboard: MAXWELL top-left, SPECTOR bottom-right, a sun crossing an arc between them">
+        <div class="c w1">Maxwell</div><div class="c w2">Spector</div>
+        <div class="pivot"><div class="dot"></div></div>
+        <div class="c copy">Product leader in clean energy. Portland, Oregon.</div>
+        <div class="c now">4:52 pm in Portland. The sun is 14° up.</div>
+      </div><figcaption><b>1. Arrive.</b> The two words hold the corners. The sun sits where it really is over Portland right now. The live thing.</figcaption></figure>
+
+      <figure><div class="fr D" role="img" aria-label="Storyboard: a dark portrait panel scrolls up between the pinned words">
+        <div class="c w1">Maxwell</div><div class="c w2">Spector</div>
+        <div class="pivot mid"><div class="dot"></div></div>
+        <div class="c panel"><b>2022</b>Aurora Solar · Group Product Manager. Solar design software for installers.</div>
+      </div><figcaption><b>2. Morning.</b> Chapters scroll up between the pinned words as 4:5 cards while the sun climbs.</figcaption></figure>
+
+      <figure><div class="fr D" role="img" aria-label="Storyboard: sun at noon above a card reading Now, Anza Renewables">
+        <div class="c w1">Maxwell</div><div class="c w2">Spector</div>
+        <div class="pivot noon"><div class="dot"></div></div>
+        <div class="c panel" style="animation-delay:-2s"><b>Now</b>Anza Renewables · Director of Platform Product Management.</div>
+      </div><figcaption><b>3. Noon is now.</b> The sun peaks on the current role. Projects like Harmoni live here too.</figcaption></figure>
+
+      <figure><div class="fr D night" role="img" aria-label="Storyboard: night field in aubergine with a moon and a list of after-hours interests">
+        <div class="c moon"></div>
+        <div class="c after">After hours</div>
+        <div class="c alist"><span>Kids and canoe trips</span><span style="animation-delay:.08s">A single scull</span><span style="animation-delay:.16s">The Grainfather</span><span style="animation-delay:.24s">A printed CNC router</span><span style="animation-delay:.32s">Sourdough and smoke</span><span style="animation-delay:.40s">A homelab that runs the house</span></div>
+      </div><figcaption><b>4. Night.</b> The field flips to aubergine for interests and contact. The moon's phase is real, too.</figcaption></figure>
+    </div>
+    <div class="specs">
+      <div><h3>Type</h3><span style="font:700 18px/1 Unbounded;text-transform:uppercase">Unbounded</span> + <span style="font:400 16px Manrope">Manrope</span><br><span class="muted">Very wide capitals, plain text.</span></div>
+      <div><h3>Colour</h3>Two tones that swap as day and night, with no third colour.<div class="sw"><i style="background:#edccbe"></i><i style="background:#e8c2b2"></i><i style="background:#351a2b"></i><i style="background:#6c4857"></i></div></div>
+      <div><h3>Signature motion</h3>A pinned story: the name stays put across three screens while the sun and the cards move under it. Native scroll, nothing hijacked.</div>
+      <div><h3>Best if… / trade-off</h3>You want it to feel different every visit. It's the most motion-dependent, so the phone layout needs the most care.</div>
+    </div>
+  </section>
+
+  <!-- ============ E ============ -->
+  <section class="dir" aria-labelledby="dE">
+    <div class="dhead">
+      <div><div class="dletter">Direction E · the contact sheet</div><h2 id="dE">Contact Sheet</h2></div>
+      <p class="idea">On this page, <em>720,000 photographs and a biologist's lab notebook</em> become <em>a photographer's contact sheet with a loupe</em>. Every chapter (each job, the boat, the brewery, the shop) is a strip of frames. Hover or drag the loupe to read a frame's story. This is the most photographic direction, so it needs your photos.</p>
+    </div>
+    <div class="frames">
+      <figure><div class="fr E" role="img" aria-label="Storyboard: a ring of small photo frames around the name">
+        <div class="c ring" aria-hidden="true">
+          <i style="left:8%;top:40%;width:9cqw;height:6.5cqw;background:#0d7480;transform:rotate(-24deg)"></i>
+          <i style="left:14%;top:16%;width:7cqw;height:9cqw;background:#cfd8dc;transform:rotate(-14deg);animation-delay:.3s"></i>
+          <i style="left:30%;top:6%;width:9cqw;height:6cqw;background:#5d6b72;transform:rotate(-6deg);animation-delay:.6s"></i>
+          <i style="left:47%;top:4%;width:7cqw;height:5cqw;background:#9fb3bb;animation-delay:.9s"></i>
+          <i style="left:62%;top:7%;width:8cqw;height:6cqw;background:#1f3038;transform:rotate(7deg);animation-delay:1.2s"></i>
+          <i style="left:78%;top:17%;width:7cqw;height:9cqw;background:#cfd8dc;transform:rotate(15deg);animation-delay:1.5s"></i>
+          <i style="left:84%;top:42%;width:9cqw;height:6.5cqw;background:#0d7480;transform:rotate(24deg);animation-delay:1.8s"></i>
+          <i style="left:76%;top:68%;width:10cqw;height:7cqw;background:#5d6b72;transform:rotate(-14deg);animation-delay:2.1s"></i>
+          <i style="left:58%;top:78%;width:10cqw;height:7.5cqw;background:#9fb3bb;transform:rotate(-6deg);animation-delay:2.4s"></i>
+          <i style="left:38%;top:79%;width:11cqw;height:7.5cqw;background:#1f3038;transform:rotate(5deg);animation-delay:2.7s"></i>
+          <i style="left:18%;top:68%;width:10cqw;height:7cqw;background:#cfd8dc;transform:rotate(14deg);animation-delay:3s"></i>
+        </div>
+        <div class="c ec"><b>Maxwell Spector</b><small>Product leader, biologist, rower, maker. Portland, Oregon.</small></div>
+      </div><figcaption><b>1. Arrive.</b> Your own photos sit in a tilted ring around the name, appearing one by one like prints in a tray.</figcaption></figure>
+
+      <figure><div class="fr E" role="img" aria-label="Storyboard: rows of thumbnails labelled by chapter">
+        <div class="c sheet">
+          <div class="row"><small>Anza Renewables, 2025 to now</small><div><i style="width:11cqw;background:#0d7480"></i><i style="width:7cqw;background:#cfd8dc;animation-delay:.05s"></i><i style="width:11cqw;background:#5d6b72;animation-delay:.1s"></i><i style="width:11cqw;background:#9fb3bb;animation-delay:.15s"></i><i style="width:7cqw;background:#1f3038;animation-delay:.2s"></i><i style="width:11cqw;background:#cfd8dc;animation-delay:.25s"></i></div></div>
+          <div class="row"><small>On the Willamette, 1998 to now</small><div><i style="width:7cqw;background:#5d6b72;animation-delay:.3s"></i><i style="width:11cqw;background:#9fb3bb;animation-delay:.35s"></i><i style="width:11cqw;background:#0d7480;animation-delay:.4s"></i><i style="width:7cqw;background:#cfd8dc;animation-delay:.45s"></i><i style="width:11cqw;background:#1f3038;animation-delay:.5s"></i><i style="width:11cqw;background:#9fb3bb;animation-delay:.55s"></i></div></div>
+          <div class="row"><small>The shop: wood, printer, CNC</small><div><i style="width:11cqw;background:#1f3038;animation-delay:.6s"></i><i style="width:11cqw;background:#cfd8dc;animation-delay:.65s"></i><i style="width:7cqw;background:#0d7480;animation-delay:.7s"></i><i style="width:11cqw;background:#5d6b72;animation-delay:.75s"></i><i style="width:11cqw;background:#9fb3bb;animation-delay:.8s"></i><i style="width:7cqw;background:#cfd8dc;animation-delay:.85s"></i></div></div>
+        </div>
+      </div><figcaption><b>2. The sheet.</b> Career and life as strips of frames in order. Filter by Work, Making or Family.</figcaption></figure>
+
+      <figure><div class="fr E" role="img" aria-label="Storyboard: a teal loupe roams over a grid of frames revealing a caption">
+        <div class="c grid" aria-hidden="true">
+          <i style="background:#cfd8dc"></i><i style="background:#9fb3bb"></i><i style="background:#5d6b72"></i><i style="background:#cfd8dc"></i><i style="background:#1f3038"></i><i style="background:#9fb3bb"></i><i style="background:#cfd8dc"></i><i style="background:#5d6b72"></i>
+          <i style="background:#9fb3bb"></i><i style="background:#1f3038"></i><i style="background:#cfd8dc"></i><i style="background:#5d6b72"></i><i style="background:#9fb3bb"></i><i style="background:#cfd8dc"></i><i style="background:#1f3038"></i><i style="background:#9fb3bb"></i>
+          <i style="background:#5d6b72"></i><i style="background:#cfd8dc"></i><i style="background:#9fb3bb"></i><i style="background:#1f3038"></i><i style="background:#cfd8dc"></i><i style="background:#5d6b72"></i><i style="background:#9fb3bb"></i><i style="background:#cfd8dc"></i>
+          <i style="background:#1f3038"></i><i style="background:#9fb3bb"></i><i style="background:#5d6b72"></i><i style="background:#cfd8dc"></i><i style="background:#9fb3bb"></i><i style="background:#1f3038"></i><i style="background:#cfd8dc"></i><i style="background:#5d6b72"></i>
+        </div>
+        <div class="c loupe"><span>Brew day: a Grainfather and a lot of patience</span></div>
+      </div><figcaption><b>3. The live thing.</b> A loupe you drag (or a finger on a phone) enlarges a frame and shows its caption.</figcaption></figure>
+
+      <figure><div class="fr E" role="img" aria-label="Storyboard: a lab-notebook page describing the Harmoni project">
+        <div class="c note">
+          <b>Harmoni</b>
+          <p>A coach for hard conversations, built on Nonviolent Communication. It turns a messy situation into a short, kind script you can actually say.</p>
+          <p><i>Next.js, Postgres, an LLM. Built nights and weekends, 2025.</i></p>
+          <div class="shot"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div><figcaption><b>4. A frame opens.</b> Click a strip and it opens as a notebook page: a project, a role, or a build, set in serif like lab notes.</figcaption></figure>
+    </div>
+    <div class="specs">
+      <div><h3>Type</h3><span style="font:700 18px/1 'Libre Franklin';text-transform:uppercase;letter-spacing:-.03em">Libre Franklin</span> + <span style="font:400 17px 'Source Serif 4'">Source Serif</span><br><span class="muted">Bold title, notebook serif.</span></div>
+      <div><h3>Colour</h3>Frost and slate, one teal. Your photographs bring the rest.<div class="sw"><i style="background:#f7f9fa"></i><i style="background:#ecf0f2"></i><i style="background:#1f3038"></i><i style="background:#5d6b72"></i><i style="background:#0d7480"></i></div></div>
+      <div><h3>Signature motion</h3>Prints develop into the ring on load, and the loupe follows your pointer smoothly. Otherwise calm.</div>
+      <div><h3>Best if… / trade-off</h3>You're willing to pick 30–60 of your photos. It's the richest and most browsable direction, and it does nothing without them.</div>
+    </div>
+  </section>
+
+  <aside class="next" aria-labelledby="nh">
+    <h3 id="nh">What happens after you pick</h3>
+    <ol>
+      <li>Close the timeline gaps above, and I'll write the full copy deck for your review before any code.</li>
+      <li>I'll build the chosen direction as a static site in the <code>maxwellspector.github.io</code> repo: no framework, fast, motion with reduced-motion fallbacks. I'll check it in a real browser at desktop, tablet and phone widths.</li>
+      <li>I'll fix the hosting. Today 1&amp;1 serves a frame that wraps the GitHub Pages site and returns an error code (HTTP 500), which hurts search results and link previews. DNS is already on Cloudflare, so we can point the domain straight at GitHub Pages.</li>
+    </ol>
+  </aside>
+</div>
+
+<script>
+(function(){
+  // B4: stroke rate sets oar tempo
+  var btns=document.querySelectorAll('.B .rbtns button');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var r=+b.dataset.r, fr=b.closest('.fr');
+    btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    fr.querySelector('.rv').textContent=r;
+    fr.querySelector('.o').style.setProperty('--d',(60/r).toFixed(2)+'s');
+  })});
+  // C3: irradiance slider scales the curve
+  var irr=document.getElementById('irr'), cg=document.querySelector('.C .cg');
+  if(irr&&cg){irr.addEventListener('input',function(){cg.style.transform='scaleY('+(irr.value/100)+')'})}
+})();
+</script>
