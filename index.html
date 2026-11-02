@@ -1,961 +1,531 @@
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<!doctype html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.png">
+<title>Maxwell Spector</title>
+<meta name="description" content="Maxwell Spector, product leader in clean energy. Director of Platform Product Management at Anza Renewables, Portland, Oregon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: the page is the river. A fixed canvas holds the water and the single scull (left column);
+   the career scrolls past on the right, one chapter between each real Willamette bridge. */
+:root{
+  --char:#191919; --char2:#242424; --paper:#ffffff; --sea:#0c7866; --deep:#075a4c; --yellow:#ffe927; --orange:#f26a1b; --red:#d71e1e; --blue:#1e4bd7;
+  --muted:#cfe7e2;
+  --display:Anton, "Arial Narrow", Impact, sans-serif; --text:"Work Sans", system-ui, sans-serif;
+  --colL:max(300px, 30vw);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--sea);color:var(--paper);font:18px/1.55 var(--text)}
+#river{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0}
+main{position:relative;z-index:1}
+a{color:var(--paper);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--yellow)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 
-   <!--- basic page needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Maxwell Spector</title>
-	<meta name="description" content="Mostly Harmless">  
-	<meta name="author" content="Maxwell Spector">
+/* ---------- hero: the shoreline is the waterline ---------- */
+.hero{position:relative;height:100vh;min-height:620px;--shore:34%}
+.land{position:absolute;left:0;right:0;top:0;height:var(--shore);background:var(--paper)}
+.nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:calc(20px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));
+  color:var(--char);font-weight:600;font-size:16px;z-index:3}
+.nav a{color:var(--char);text-decoration:none}
+.nav a:hover{color:var(--sea)}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+.name{position:absolute;left:var(--colL);right:max(24px,env(safe-area-inset-right,0px));top:calc(var(--shore) - 1.36em);
+  margin:0;font:400 clamp(64px,10.5vw,190px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.005em;z-index:2}
+.name span{display:block}
+.name .dry{color:var(--char);clip-path:inset(0 0 calc(100% - 1.36em) 0)}
+.name .wet{position:absolute;inset:0;color:var(--yellow);clip-path:inset(1.36em 0 0 0)}
+.hero .intro{position:absolute;left:var(--colL);right:max(24px,env(safe-area-inset-right,0px));top:calc(var(--shore) + clamp(64px,10.5vw,190px)*.36 + 40px);max-width:620px;z-index:2}
+.intro p{font-size:clamp(19px,1.5vw,23px);margin:0 0 20px}
+.intro .start{display:inline-flex;align-items:center;gap:10px;background:var(--char);color:var(--paper);padding:14px 20px;font-weight:600;text-decoration:none;transition:background .15s,transform .15s}
+.intro .start:hover{background:var(--yellow);color:var(--char)}
+.intro .start:active{transform:translateY(1px)}
 
-   <!-- mobile specific metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+/* ---------- bridges (plan view: the boat passes under the deck) ---------- */
+.bridge{position:relative;height:clamp(150px,22vh,240px);margin:0;display:flex;align-items:center;overflow:hidden}
+.bridge .deck{position:absolute;left:0;right:0;top:18%;bottom:18%;background:var(--deck,#2b2b2b)}
+.bridge .shade{position:absolute;left:0;right:0;top:82%;height:30%;background:rgba(0,0,0,.18)}
+.bridge .pier{position:absolute;top:8%;bottom:8%;width:clamp(18px,1.6vw,26px);background:#5d5d5d}
+.bridge h2{position:relative;margin:0;padding-left:var(--colL);font:400 clamp(30px,4.4vw,72px)/1 var(--display);text-transform:uppercase;color:var(--deckInk,#fff);letter-spacing:.01em}
+.bridge small{display:block;font:600 14px/1.3 var(--text);letter-spacing:0;text-transform:none;opacity:.85;margin-top:6px}
+.truss .deck{background:repeating-linear-gradient(90deg,#3a3a3a 0 6px,transparent 6px 64px),#262626}
 
- 	<!-- CSS
-   ================================================== -->
-   <link rel="stylesheet" href="css/base.css">  
-   <link rel="stylesheet" href="css/main.css">
-   <link rel="stylesheet" href="css/vendor.css">     
+/* ---------- chapters ---------- */
+.chap{padding:clamp(80px,12vh,160px) max(24px,env(safe-area-inset-right,0px)) clamp(100px,16vh,200px) var(--colL);min-height:100vh;max-width:calc(var(--colL) + 760px)}
+.chap .when{font:400 clamp(22px,2vw,30px)/1 var(--display);color:var(--paper);margin:0 0 10px;letter-spacing:.02em}
+.chap.clean .when{color:var(--yellow)}
+.chap h3{font:400 clamp(52px,6.6vw,112px)/.88 var(--display);text-transform:uppercase;margin:0 0 14px}
+.chap .role{font-weight:600;font-size:clamp(18px,1.4vw,21px);margin:0 0 22px}
+.chap .kind{font-size:clamp(18px,1.4vw,21px);margin:0 0 22px;max-width:56ch}
+.chap .out p{margin:0 0 14px;max-width:58ch}
+.chap .grew{margin-top:22px;padding:18px 20px;background:var(--deep);max-width:58ch}
+.chap .grew b{display:block;font:400 22px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px;color:var(--yellow)}
+.chap blockquote{margin:22px 0 0;font-size:clamp(20px,1.7vw,26px);line-height:1.35;max-width:30ch;font-weight:600}
+.chap blockquote cite{display:block;font:400 15px/1.4 var(--text);font-style:normal;margin-top:8px;opacity:.85}
+.viz{position:sticky;top:18vh;aspect-ratio:4/5;background:var(--vbg,var(--char));color:var(--vink,#fff);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;font-size:14px;line-height:1.35;max-width:100%}
+.viz b{font:400 30px/1 var(--display);text-transform:uppercase;margin-bottom:6px}
+.builds ul{list-style:none;padding:0;margin:0;display:grid;gap:22px;max-width:60ch}
+.builds li b{font:400 30px/1 var(--display);text-transform:uppercase;display:block;margin-bottom:4px}
+.end{padding:clamp(80px,12vh,160px) max(24px,env(safe-area-inset-right,0px)) 0 var(--colL);min-height:100vh;background:var(--paper);color:var(--char);position:relative}
+.end h2{font:400 clamp(64px,10.5vw,190px)/.86 var(--display);text-transform:uppercase;margin:0 0 24px}
+.end p{max-width:56ch}
+.end a{color:var(--char)}
+.end .links{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 64px}
+.end .links a{background:var(--char);color:var(--paper);padding:14px 20px;text-decoration:none;font-weight:600}
+.end .links a:hover{background:var(--sea)}
+.end .foot{font:400 clamp(48px,14vw,240px)/.8 var(--display);text-transform:uppercase;white-space:nowrap;overflow:hidden;margin-left:calc(-1 * var(--colL) + 24px);padding-bottom:24px;color:var(--sea)}
+.credit{font-size:13px;opacity:.75;margin:0 0 8px}
 
-   <!-- script
-   ================================================== -->   
-	<script src="js/modernizr.js"></script>
-	<script src="js/pace.min.js"></script>
+/* ---------- instruments (left column) ---------- */
+.hud{position:fixed;left:calc(max(24px,env(safe-area-inset-left,0px)) + clamp(56px,4.6vw,78px) + 24px);top:calc(24px + env(safe-area-inset-top,0px));z-index:2;font-variant-numeric:tabular-nums;display:flex;gap:22px;align-items:flex-end;pointer-events:none}
+.hud div{display:flex;flex-direction:column}
+.hud b{font:400 30px/1 var(--display)}
+.hud span{font-size:13px;opacity:.85}
+.map{position:fixed;left:max(24px,env(safe-area-inset-left,0px));top:calc(24px + env(safe-area-inset-top,0px));z-index:2;width:clamp(56px,4.6vw,78px);height:44vh;pointer-events:none;transition:opacity .3s}
+.map svg{width:100%;height:100%;overflow:visible}
+.hud,.map{opacity:var(--instr,0)}
 
-   <!-- favicons
-	================================================== -->
-	<link rel="icon" type="image/png" href="favicon.png">
-
-	
-
+@media (max-width:820px){
+  :root{--colL:20px}
+  .hero{--shore:30%}
+  .name{left:20px;right:20px}
+  .hero .intro{left:20px;right:20px;top:auto;bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+  .intro p{background:var(--char);padding:14px 16px}
+  .nav ul{gap:14px}.nav .wordmark{display:none}
+  .chap{max-width:none;min-height:0;padding:56px 20px 56px 20px;margin:42vh 0 0;background:var(--char)}
+  .viz{position:relative;top:0;aspect-ratio:16/10}
+  .bridge h2{padding-left:20px}
+  .end{padding:56px 20px 0;margin-top:42vh}
+  .end .foot{margin-left:0}
+  .map{display:none}
+  .hud{left:auto;top:auto;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .hud b{font-size:22px}
+}
+@media (prefers-reduced-motion: reduce){ .intro .start{transition:none} }
+</style>
 </head>
-
-<body id="top">
-	
-   <header>   	
-   	<div class="row">
-
-   		<div class="top-bar">
-   			<a class="menu-toggle" href="#"><span>Menu</span></a>
-
-	   		<div class="logo">
-		         <a href="index.html">Meet Max</a>
-		      </div>		      
-
-		   	<nav id="main-nav-wrap">
-					<ul class="main-navigation">
-						<li class="current"><a class="smoothscroll"  href="#intro" title="">Home</a></li>
-						<li><a class="smoothscroll"  href="#about" title="">About</a></li>
-						<li><a class="smoothscroll"  href="#interests" title="">Interests</a></li>				
-						<li><a class="smoothscroll"  href="#resume" title="">Resume</a></li>
-						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>		
-					</ul>
-				</nav>    		
-   		</div> <!-- /top-bar --> 
-   		
-   	</div> <!-- /row --> 		
-   </header> <!-- /header -->
-
-	<!-- intro section
-   ================================================== -->
-   <section id="intro">   
-
-   	<div class="intro-overlay"></div>	
-
-   	<div class="intro-content">
-   		<div class="row">
-
-   			<div class="col-twelve">
-
-	   			<h5>Hi there!</h5>
-	   			<h1>I'm Maxwell Spector.</h1>
-
-	   			<p class="intro-position">	
-				<span>Father</span> 
-				<span>Product Leader</span>
-	   			<span>Tinkerer</span> 
-	   			</p>
-
-	   			<a class="button stroke smoothscroll" href="#about" title="">More About Me</a>
-
-	   		</div>  
-   			
-   		</div>   		 		
-   	</div> <!-- /intro-content --> 
-
-   	<ul class="intro-social">        
-         <li><a href="https://www.linkedin.com/in/maxwellspector/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a></li>
-         <li><a href="https://www.youtube.com/channel/UCuyJqtEmImMqrQ4RsK1hOyg" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a></li>
-         <li><a href="https://www.printables.com/@xam247_261240" target="_blank" rel="noopener noreferrer"><i class="fa fa-cubes"></i></a></li>
-      </ul> <!-- /intro-social -->      	
-
-   </section> <!-- /intro -->
-
-
-   <!-- about section
-   ================================================== -->
-   <section id="about">  
-
-   	<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>About Me</h5>
-   			<h1>Let me introduce myself.</h1>
-
-   			<div class="intro-info">
-
-   				<img src="images/profile-pic.png" alt="Profile Picture">
-
-   				<p class="lead">I have a deeply curious personality and constantly seek knowledge in a wide range of interests including technology, politics, cooking, science, and more. My non-working hours are often spent with family or working on pet projects that involve computers, amateur photography, woodworking and homebrewing. When I'm outside I like to be rowing on the river or tromping through the woods with my family.</p>
-   			</div>   			
-
-   		</div>   		
-   	</div> <!-- /section-intro -->
-
-   	<div class="row about-content">
-
-   		<div class="col-six tab-full">
-
-   			<h3>Personal Profile</h3>
-   			<p>There is work and then not work and I seek to be engaged and have fun in both. So far, I've found no shortage of fun.</p>
-
-   			<ul class="info-list">
-   				<li>
-   					<strong>Current Location:</strong>
-   					<span>Portland, Oregon</span>
-   				</li>
-   				<li>
-   					<strong>Happy Weekends:</strong>
-   					<span>Family canoe trips & friends in the back yard</span>
-   				</li>
-   				<li>
-   					<strong>Exploring My Interests:</strong>
-   					<span>Always in the back of my mind (specifics below)</span>
-   				</li>
-   				<li>
-   					<strong>Staying Fit:</strong>
-   					<span>Cycling, Rowing, Bouldering, Chasing Children</span>
-   				</li>
-   				<li>
-   					<strong>Job #1:</strong>
-   					<span>Being a good husband and father</span>
-   				</li>
-
-   			</ul> <!-- /info-list -->
-
-   		</div>
-
-   		<div class="col-six tab-full">
-
-   			<h3>Professional Skills</h3>
-   			<p>Product managers are a diverse breed with myriad specialties and finely-honed skills. These just happen to be mine.</p>
-
-				<ul class="skill-bars">
-				   <li>
-				   	<div class="progress percent95"><span>90%</span></div>
-				   	<strong>Product Development & Launch</strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent85"><span>85%</span></div>
-				   	<strong>Vision & Strategy </strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent80"><span>80%</span></div>
-				   	<strong>Business & Marketing</strong>
-				   </li>
-				   <li>
-				   	<div class="progress percent85"><span>85%</span></div>
-				   	<strong>Systems Thinking</strong>
-				   </li>
-				   <li>
-
-				   	<div class="progress percent75"><span>75%</span></div>
-				   	<strong>Customer Research</strong>
-				   </li>
-      
-				</ul> <!-- /skill-bars -->		
-
-   		</div>
-
-   	</div>
-
-   	<div class="row button-section">
-   		<div class="col-twelve">
-   			<a href="#contact" title="Contact Me" class="button stroke smoothscroll">Contact Me</a>
-   			<!-- <a href="#" title="Download CV" class="button button-primary">Download CV</a> </!-->
-   		</div>   		
-   	</div>
-
-   </section> <!-- /process-->    
-
-	<!-- stats Section
-   ================================================== -->
-	<section id="stats" class="count-up">
-
-		<div class="row">
-			<div class="col-twelve">
-
-				<div class="block-1-6 block-s-1-3 block-tab-1-2 block-mob-full stats-list">
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="fa fa-sitemap"></i>
-						</div>
-
-						<h3 class="stat-count">
-							30
-						</h3>
-
-						<h5 class="stat-title">
-							Products & Features
-						</h5>
-
-					</div> <!-- /stat -->					
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="fa fa-camera-retro"></i>
-						</div>
-
-						<h3 class="stat-count">
-							720000
-						</h3>
-
-						<h5 class="stat-title">
-							Photos taken
-						</h5>
-
-					</div> <!-- /stat -->
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="fa fa-film"></i>
-						</div>
-
-						<h3 class="stat-count">
-							3524
-						</h3>
-
-						<h5 class="stat-title">
-							Movies Watched
-						</h5>
-
-					</div> <!-- /stat -->									
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="icon-light-bulb"></i>
-						</div>
-
-						<h3 class="stat-count">
-							368
-						</h3>
-
-						<h5 class="stat-title">
-							Crazy Ideas
-						</h5>
-
-					</div> <!-- /stat -->
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="fa fa-headphones"></i>
-						</div>
-
-						<h3 class="stat-count">
-							2
-						</h3>
-
-						<h5 class="stat-title">
-							Zunes
-						</h5>
-
-					</div> <!-- /stat -->
-
-					<div class="bgrid stat">
-
-						<div class="icon-part">
-							<i class="fa fa-laptop"></i>
-						</div>
-
-						<h3 class="stat-count">
-							9
-						</h3>
-
-						<h5 class="stat-title">
-							Computers
-						</h5>
-
-					</div> <!-- /stat -->
-
-				</div> <!-- /stats-list -->
-
-			</div> <!-- /twelve -->
-		</div> <!-- /row -->
-
-	</section> <!-- /stats -->
-
-	<!-- Interests Section
-   ================================================== -->
-	<section id="interests">
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>Interests</h5>
-   			<h1>See what keeps me thinking.</h1>
-
-   			<p class="lead">As someone with access to the wealth of knowledge on the internet since the age of 14, I have amassed more interests and hobbies than I can actively maintain.</p>
-
-   		</div>   		
-   	</div> <!-- /section-intro--> 
-
-   	<div class="row interests-content">
-
-   		<div class="col-twelve">
-
-   			<!-- interests-wrapper -->
-	         <div id="folio-wrapper" class="block-1-2 block-mob-full stack">
-
-	         	<div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/interests/rowing.jpg" alt="Rowing">
-	                  <a href="#modal-01" class="overlay">	                  	           
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-		     					       <h3 class="folio-title">Rowing</h3>	     					    
-		     					    	 <span class="folio-types">
-		     					       	  Singles
-		     					       </span>
-		     					   </div>	                      	
-	                     </div>                    
-	                  </a>
-	               </div>	               
-	        		</div> <!-- /folio-item -->
-
-	        		<div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/interests/brewing.jpg" alt="Brewing">
-	               	<a href="#modal-02" class="overlay">              		                  
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">Brewing</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Beer
-		     					      </span>		     		
-		     					   </div> 	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->
-
-	            <div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/interests/making.jpg"alt="Making">
-	                  <a href="#modal-03" class="overlay">             		                  
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">Making</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Things
-		     					      </span>		     		
-		     					   </div> 	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->
-
-	            <div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/interests/cooking.jpg" alt="Cooking">
-	                  <a href="#modal-04" class="overlay">                  	                 
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">Cooking</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Food
-		     					      </span>		     		
-		     					   </div>  	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->     
-
-	        		<div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/interests/technology.jpg" alt="Technology">
-	                  <a href="#modal-05" class="overlay">             		                  
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">Technology</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Innovation & Gadgets
-		     					      </span>		     		
-		     					   </div> 	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->
-
-	            <div class="bgrid folio-item">
-	               <div class="item-wrap">
-	               	<img src="images/interests/news.jpg" alt="News">
-	                  <a href="#modal-06" class="overlay">
-	                     <div class="folio-item-table">
-	                     	<div class="folio-item-cell">
-	                     		<h3 class="folio-title">News</h3>	     					    
-		     					    	<span class="folio-types">
-		     					       	  Thinking Data
-		     					      </span>		     		
-		     					   </div>	                      	
-	                     </div>                    
-	                  </a>
-	               </div>
-	        		</div> <!-- /folio-item -->   
-
-	            <!-- modal popups - begin
-	            ============================================================= -->
-	            <div id="modal-01" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/interests/modals/m-rowing.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Rowing</h4>		      
-					      <p>I stumbled into the sport at the begining of high school and couldn't put it down for about 13 years. These days I occationaly take my single out for a spin or keep in some semblance of shape on my rowing machine when the conditions on the Willamette River are less than ideal.</p>
-
-					      <div class="categories">Physical</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://youtu.be/1eKtQe_E43c" target="_blank" rel="noopener noreferrer">Single Resoration</a>
-					<a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-01 -->
-
-				   <div id="modal-02" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/interests/modals/m-brewing.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Brewing</h4>		      
-					      <p>Starting with the gift of a homebrewing kit on my 21st birthday, I rapidly developed my love not only for the result but the process of brewing beer. It's here that I scratch that itch to do science - rejoicing in sucess and planning the next experiment in failure. These days my primary brewing instrument of choice is the reliable, elegant, and just smart enough Grainfather.</p>
-
-					      <div class="categories">Sort of science</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://www.homebrewersassociation.org/how-to-brew/find-a-homebrew-supply-shop/" target="_blank" rel="noopener noreferrer">Find a Homebrew Shop</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-02 -->
-
-				   <div id="modal-03" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/interests/modals/m-making.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Making</h4>		      
-					      <p>I've always liked to tinker and build things. Sometimes I wanted something that didn't exist, wanted to save money, or just thought it would be cool. In the end I found that I love the making process. I've picked up all kinds of skills and tools as my project aspirations built on eachother. Most recently I'm still focused on woodworking but I've added 3d printing and now a mostly printed CNC router to the toolkit and am stoked by the seemingly endless possibilities.</p>
-
-					      <div class="categories">Things</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://photos.app.goo.gl/apR4H5UbPUjKdktK6" target="_blank" rel="noopener noreferrer">Projects</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-03 -->
-
-				   <div id="modal-04" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/interests/modals/m-cooking.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Cooking</h4>		      
-					      <p>As the primary chef in my home, I take my responsibilities seriously. I like to find new recipes to try, hone my own, and find opportunities to expand my skills. Like many during the pandemic, my most recent new skills are bread focused: sourdough, bagels, pita, buns, etc. And as a lover of gear and gadgets I've enjoyed learning sours vide and smoking techniques, especially when combined. When my favorite recipe and shopping list app went dark I moved to Paprika and can't reccomend it highly enough.</p>
-
-					      <div class="categories">Food</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://www.paprikaapp.com/" target="_blank" rel="noopener noreferrer">Paprika Recipe Manager</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-04 -->
-
-				   <div id="modal-05" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/interests/modals/m-technology.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>Technology</h4>		      
-					      <p>As I came of age at the turn of the millenium I see the forward march of technology as a measure of our civilaztion's growing sophistication. Moreover I've always been excited to experience the cutting edge. So as an early adopter and long-time beta tester, I follow the technology landscape and seek to look ahead how each advancement might improve my life, society, and feed future innovation. In my own life, that means playing with computers and IoT devices, tinkering with RaspberryPi and the like, and ejoying the emersion of video games. To stay in the know, I use Feedly to read multiple news sources on this subject and many others.</p>
-
-					      <div class="categories">Innovation & Gadgets</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://feedly.com" target="_blank" rel="noopener noreferrer">Check out Feedly</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-05 -->
-
-				   <div id="modal-06" class="popup-modal slider mfp-hide">	
-
-				     	<div class="media">
-				     		<img src="images/interests/modals/m-news.jpg" alt="" />
-				     	</div>      	
-
-					   <div class="description-box">
-					      <h4>News</h4>		      
-					      <p>Facts and information are more important than ever. As a reaction to the nefarious questioning of facts and intentional distribution of lies for power and money, I've only increased my attention to news on current events, politics, science and technology. There are so many challenging problems out there in the world and being well informed is the only way I can see someone being able to even think about how to solve them. Here in Portland, we are lucky to have Oregon Public Broadcasting and I've found it and other public broadcasting stations to be the fairest and deeply informative source for basic news and current events.</p>
-					      <div class="categories">Thinking data</div>			               
-					   </div>
-
-			         <div class="link-box">
-			            <a href="https://www.npr.org/" target="_blank" rel="noopener noreferrer">NPR</a>
-					      <a href="#" class="popup-modal-dismiss">Close</a>
-			         </div>		      
-
-				   </div> <!-- /modal-06 -->
-
-
-				   <!-- modal popups - end
-	            ============================================================= -->
-
-	         </div> <!-- /interests-wrapper --> 
-
-   		</div>  <!-- /twelve -->   
-
-   	</div> <!-- /interests-content --> 
-		
-	</section> <!-- /interests --> 
-
-   <!-- resume Section
-   ================================================== -->
-	<section id="resume" class="grey-section">
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>Resume</h5>
-   			<h1>More of my credentials.</h1>
-
-   			<p class="lead">Some jobs are just jobs; others are part of a career. Like most people, I've had both kinds but I wouldn't trade any of my experiences.</p>
-
-   		</div>   		
-   	</div> <!-- /section-intro--> 
-
-   	<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>Career Experience</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Group Product Manager</h3>
-	   					<p>2022 - Present</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Aurora Solar</h4>
-	   					<p>Led product vision and strategy for solar design software, driving strong revenue growth through PLG, customer-centric solutions, pricing and packaging and ruthless prioritization.</p>
-	   				</div>
-				
-				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Group Product Manager</h3>
-	   					<p>2021 - 2022</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Conviva</h4>
-	   					<p>Leading a small product team to grow two product lines serving the top streaming companies around the world. Simultaneously an individual owner of new market, 0-1 products and cross-cutting product platform initiatives.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Principal Product Manager</h3>
-	   					<p>2019 - 2021<br>Sr. Product Manager<br>2016-2019</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Act-On Software</h4>
-	   					<p>Identified fundamental customer problems and leading cross-functional teams to bring new and improved capabilities to its growth marketing platform.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Sr. Product Marketing Manager</h3>
-	   					<p>2014 - 2016</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Webtrends</h4>
-	   					<p>Developed and executed a strategic go to market plan for its next generation real-timedata exploration tool including beta and early adopter programs - contributing to wide-spread adoption and subsequent acquisition by Oracle.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Product Manager</h3>
-	   					<p>Product Marketing Manager<br>2011-2014</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Janrain</h4>
-	   					<p>Managed the design, development and go to market activities for multiple identity and customer data products simultaneously.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-   	
-   	<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>Education</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Master of Business Administration</h3>
-	   					<p>2009-2011</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Portland State University</h4>
-	   					<p>My pivot point from science and into technology. Gravitated towards classes in strategy, marketing, leadership, and entrepreneurship.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Bachelor of Arts: Biology</h3>
-	   					<p>2002-2006</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Lewis & Clark College</h4>
-	   					<p>Studied molecular biology and contributed to ribosomal contruction research under the wise Dr. Deborah Lycan. Found more chosen family in the crew team.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-	
-   	</div> <!-- /resume-timeline -->
-   	
-   	<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>Other Work Experience</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-bullhorn"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Novice Men's Rowing Coach</h3>
-	   					<p>2006-2009</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Lewis &  Clark College</h4>
-	   					<p>Easily the most fun job I've ever had. Coached 9-15 novice rowers each year and directed the 2007 Novice Men to a conference title.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-flask"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Research Assistant II</h3>
-	   					<p>2006-2009</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Oregon Health & Science Univiersity</h4>
-	   					<p>Project manager and bench technician for a multi-million dollar investigation of a novel, neuroprotective stroke treatment and coauthor of two papers under the leadership of Dr. Mary Stenzel-Poore</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-life-ring"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Lifeguard/Head Lifeguard/Assistant Pool Manager</h3>
-	   					<p>2001-2004</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>San Mateo Elks Club</h4>
-	   					<p>Fun in the sun with some early morning swim lessons, lots of kids, and in my last year as head guard, my first management experience wrangling mostly high-school kids.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-	
-	</section> <!-- /features -->
-
-
-	
-	
-   <!-- contact
-   ================================================== -->
-	<section id="contact">
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>Contact</h5>
-   			<h1>I'd Love To Hear From You.</h1>
-
-   			<p class="lead">Whether you want to talk about the joys and challenges of product management and growth or you want to share your own experiences with similar interests, I would love to make your acquaintance.</p>
-
-   		</div> 
-   	</div> <!-- /section-intro -->
-
-   	<div class="row contact-form">
-
-   		<div class="col-twelve">
-
-            <!-- form -->
-            <form name="contactForm" id="contactForm" method="post" action="">
-      			<fieldset>
-
-                  <div class="form-field">
- 						   <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
-                  </div>
-                  <div class="form-field">
-	      			   <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="">
-	               </div>
-                  <div class="form-field">
-	     				   <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
-	               </div>                       
-                  <div class="form-field">
-	                 	<textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required=""></textarea>
-	               </div>                      
-                 <div class="form-field">
-                     <button class="submitform">Submit</button>
-                     <div id="submit-loader">
-                        <div class="text-loader">Sending...</div>                             
-       				      <div class="s-loader">
-								  	<div class="bounce1"></div>
-								  	<div class="bounce2"></div>
-								  	<div class="bounce3"></div>
-								</div>
-							</div>
-                  </div>
-
-      			</fieldset>
-      		</form> <!-- Form End -->
-
-            <!-- contact-warning -->
-            <div id="message-warning">            	
-            </div>            
-            <!-- contact-success -->
-      		<div id="message-success">
-               <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-      		</div>
-
-         </div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /contact-form -->
-
-   	<div class="row contact-info">
-
-   		<div class="col-four tab-full">
-
-   			<div class="icon">
-   				<i class="icon-pin"></i>
-   			</div>
-
-   			<h5>Where to find me</h5>
-
-   			<p>
-            Portland, OR
-            </p>
-
-   		</div>
-
-   		<div class="col-four tab-full collapse">
-
-   			<div class="icon">
-   				<i class="icon-mail"></i>
-   			</div>
-
-   			<h5>Email Me</h5>
-
-   			<p>Using the above form<br>			     
-			   </p>
-
-   		</div>
-
-   		<div class="col-four tab-full">
-
-   			<div class="icon">
-   				<i class="icon-phone"></i>
-   			</div>
-
-   			<h5>Call Me</h5>
-
-   			<p>Actually, please don't
-			   </p>
-
-   		</div>
-   		
-   	</div> <!-- /contact-info -->
-		
-	</section> <!-- /contact -->
-
-
-   <!-- footer
-   ================================================== -->
-
-   <footer>
-     	<div class="row">
-
-     		<div class="col-six tab-full pull-right social">
-
-     			<ul class="footer-social">        
-			      <li><a href="https://www.linkedin.com/in/maxwellspector/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a></li>
-			      <li><a href="https://www.youtube.com/channel/UCuyJqtEmImMqrQ4RsK1hOyg" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a></li>
-			   </ul> 
-	      		
-	      </div>
-
-      	<div class="col-six tab-full">
-	      	<div class="copyright">
-		        	<span>© Copyright Maxwell Spector 2024.</span> 
-		        	<span>Design by <a href="http://www.styleshout.com/" target="_blank" rel="noopener noreferrer">styleshout</a></span>	         	
-		         </div>		                  
-	      	</div>
-
-	      	<div id="go-top">
-		         <a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
-		      </div>
-
-      	</div> <!-- /row -->     	
-   </footer>  
-
-   <div id="preloader"> 
-    	<div id="loader"></div>
-   </div> 
-
-   <!-- Java Script
-   ================================================== --> 
-   <script src="js/jquery-2.1.3.min.js"></script>
-   <script src="js/plugins.js"></script>
-   <script src="js/main.js"></script>
+<body>
+
+<canvas id="river" aria-hidden="true"></canvas>
+<div class="map" aria-hidden="true"><svg id="mapsvg"></svg></div>
+<div class="hud" aria-hidden="true">
+  <div><b id="hRate">0</b><span>strokes / min</span></div>
+  <div><b id="hNext">Sellwood</b><span id="hDist">next bridge</span></div>
+</div>
+
+<main>
+  <header class="hero" data-from="0" data-to="300">
+    <div class="land"></div>
+    <nav class="nav" aria-label="Main">
+      <span class="wordmark">maxwellspector.com</span>
+      <ul><li><a href="#janrain">Career</a></li><li><a href="#builds">Builds</a></li><li><a href="#hello">Say hello</a></li></ul>
+    </nav>
+    <h1 class="name"><span class="dry" aria-hidden="true"><span>Maxwell</span><span>Spector</span></span><span class="wet" aria-hidden="true"><span>Maxwell</span><span>Spector</span></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Maxwell Spector</span></h1>
+    <div class="intro">
+      <p>Product leader in clean energy. I build the platform at Anza Renewables, and I row a single on the Willamette in Portland.</p>
+      <a class="start" href="#biology">Row downriver ↓</a>
+    </div>
+  </header>
+
+  <div class="bridge truss" data-bridge="Lake Oswego Railroad Bridge" style="--deck:#262626"><span class="pier" style="left:8%"></span><span class="pier" style="right:30%"></span><div class="deck"></div><div class="shade"></div><h2>Lake Oswego Rail Bridge<small>River mile 20. Where my stretch starts.</small></h2></div>
+
+  <section class="chap" id="biology" data-from="300" data-to="5713" aria-labelledby="t-bio">
+    <div>
+      <p class="when">2002–2011</p>
+      <h3 id="t-bio">Biology first</h3>
+      <p class="role">Lewis &amp; Clark College · OHSU</p>
+      <div class="out">
+        <p>I started out working in molecular biology, first in a ribosome lab at Lewis &amp; Clark, then at OHSU as a key contributor to a large stroke study, with three co-authored papers along the way.</p>
+        <p>At the same time I coached Lewis &amp; Clark's novice men, easily the most fun job I've ever had. In 2007 we won the conference title.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A systems thinker and a leader. A cell is all feedback loops and second-order effects, and I still look at every product that way. Coaching taught me to lead: earn trust, make the goal clear, and get a crew of beginners pulling together.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Sellwood Bridge" style="--deck:#7d7f80"><span class="pier" style="left:6%"></span><span class="pier" style="right:22%"></span><div class="deck"></div><div class="shade"></div><h2>Sellwood Bridge<small>2009–2011. An MBA at Portland State, my bridge from the lab to software.</small></h2></div>
+
+  <section class="chap" id="janrain" data-from="5713" data-to="10192" aria-labelledby="t-jan">
+    <div>
+      <p class="when">2011–2014</p>
+      <h3 id="t-jan">Janrain</h3>
+      <p class="role">Product Marketing Manager, then Product Manager</p>
+      <p class="kind">A Portland SaaS company that let big consumer brands sign customers in with their social accounts and manage the identity data behind it. Akamai later acquired it.</p>
+      <div class="out">
+        <p>I ran product marketing and then product management for several identity and customer-data products at once, from business case through launch. I built the company's first formal win/loss program, so roadmap calls started from why deals were won and lost instead of from the loudest request.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A product manager. Starting in marketing taught me to begin with the buyer, and I've never stopped.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Ross Island Bridge" style="--deck:#3d6b5e"><span class="pier" style="left:10%"></span><span class="pier" style="right:26%"></span><div class="deck"></div><div class="shade"></div><h2>Ross Island Bridge<small>2014.</small></h2></div>
+
+  <section class="chap" id="webtrends" data-from="10192" data-to="10365" aria-labelledby="t-wt">
+    <div>
+      <p class="when">2014–2016</p>
+      <h3 id="t-wt">Webtrends</h3>
+      <p class="role">Senior Product Marketing Manager</p>
+      <p class="kind">One of the original web analytics companies, born in Portland, helping enterprises understand what their customers do online.</p>
+      <div class="out">
+        <p>I took its next-generation, real-time data exploration product to market: beta and early-adopter programs, positioning, sales training and content. It reached broad adoption and was later acquired by Oracle.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A launcher. I learned how a new product earns its first hundred believers.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Tilikum Crossing" style="--deck:#e9e9e9;--deckInk:#191919"><span class="pier" style="left:16%"></span><span class="pier" style="right:16%"></span><div class="deck"></div><div class="shade"></div><h2>Tilikum Crossing<small>2016.</small></h2></div>
+
+  <section class="chap" id="acton" data-from="10365" data-to="11067" aria-labelledby="t-ao">
+    <div>
+      <p class="when">2016–2021</p>
+      <h3 id="t-ao">Act-On</h3>
+      <p class="role">Senior Product Manager, then Principal Product Manager</p>
+      <p class="kind">A Portland marketing automation platform for growing B2B companies: email, landing pages, lead scoring and the data that ties them together.</p>
+      <div class="out">
+        <p>I shipped a new product under a hard deadline that brought in real revenue in its first quarter, and led the re-architecture of a core part of the platform. I brought continuous discovery to the team, so customer conversations shaped every iteration.</p>
+        <p>When we needed one, I stepped in as interim head of product, mentored a younger PM and a designer, and helped hire our next product leaders.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A product leader, and someone who won't build without talking to customers first.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Marquam Bridge" style="--deck:#8b8d8f"><span class="pier" style="left:12%"></span><span class="pier" style="right:20%"></span><div class="deck"></div><div class="shade"></div><h2>Marquam Bridge<small>2021.</small></h2></div>
+
+  <section class="chap" id="conviva" data-from="11067" data-to="11551" aria-labelledby="t-cv">
+    <div>
+      <p class="when">2021–2022</p>
+      <h3 id="t-cv">Conviva</h3>
+      <p class="role">Group Product Manager</p>
+      <p class="kind">Real-time analytics for the world's biggest streaming services, measuring the quality of every stream as people watch.</p>
+      <div class="out">
+        <p>I grew revenue by launching new SaaS products in media analytics, and brought several products onto one roadmap so customers got one coherent experience. I led an international team and worked across departments to take each launch to market.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A manager of product managers, across time zones and product lines.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Hawthorne Bridge" style="--deck:#2f6e4a"><span class="pier" style="left:9%;background:#b23a2c"></span><span class="pier" style="right:24%;background:#b23a2c"></span><div class="deck"></div><div class="shade"></div><h2>Hawthorne Bridge<small>2022. Into clean tech.</small></h2></div>
+
+  <section class="chap clean" id="aurora" data-from="11551" data-to="12288" aria-labelledby="t-au">
+    <div>
+      <p class="when">2022–2024</p>
+      <h3 id="t-au">Aurora Solar</h3>
+      <p class="role">Group Product Manager, HelioScope</p>
+      <p class="kind">Software that solar installers use to design and sell solar. I went looking for work on climate change, and this is where I found it.</p>
+      <div class="out">
+        <p>I led HelioScope, Aurora's design tool for commercial solar. We grew revenue substantially through new pricing and packaging, and I built a three-year strategy with stakeholders across the company to take the product into new market segments.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A clean-tech product leader. I learned the solar industry from the panel up.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Morrison Bridge" style="--deck:#77797b"><span class="pier" style="left:11%"></span><span class="pier" style="right:21%"></span><div class="deck"></div><div class="shade"></div><h2>Morrison Bridge<small>2025.</small></h2></div>
+
+  <section class="chap clean" id="omnidian" data-from="12288" data-to="12676" aria-labelledby="t-om">
+    <div>
+      <p class="when">2025</p>
+      <h3 id="t-om">Omnidian</h3>
+      <p class="role">Group Product Manager</p>
+      <p class="kind">A Seattle company that keeps residential and commercial solar systems producing, monitoring fleets and dispatching service when something fails.</p>
+      <div class="out">
+        <p>I led customer experience strategy, and my biggest wins were in leadership: connecting operations, support, engineering and product so each part of the business could see how its work moved the next. I brought product discipline and better technology to a service-heavy business.</p>
+      </div>
+      <div class="grew"><b>What it made me</b>A connector. I learned to lead through the seams between teams.</div>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Burnside Bridge" style="--deck:#6f7173"><span class="pier" style="left:13%"></span><span class="pier" style="right:19%"></span><div class="deck"></div><div class="shade"></div><h2>Burnside Bridge<small>November 2025. Now.</small></h2></div>
+
+  <section class="chap clean" id="anza" data-from="12676" data-to="13199" aria-labelledby="t-an">
+    <div>
+      <p class="when">2025–now</p>
+      <h3 id="t-an">Anza</h3>
+      <p class="role">Director of Platform Product Management</p>
+      <p class="kind">A two-sided marketplace for solar and energy-storage equipment, connecting the developers and utilities who buy it with the manufacturers who make it.</p>
+      <div class="out">
+        <p>I lead the platform: the shared foundations every part of the marketplace is built on. I'm building a cross-cutting data architecture that matches the messy reality of the equipment world to what the software needs to support good decisions.</p>
+        <p>I defined how Anza builds product, on a few principles: earn conviction before you build, match rigor to risk, and measure outcomes rather than output. I stay close to our users on both sides of the market, and I helped lead the company's move to AI-first development.</p>
+        <p>I'm also responsible for the supplier experience: delivering value to the second side of our two-sided marketplace, from the deals themselves to everything that helps manufacturers reach and win buyers.</p>
+      </div>
+      <blockquote>“AI has collapsed the cost of building. Now that building is cheap, the expensive things are deciding what to build and knowing whether it worked.”<cite>Me, on why product process had to change</cite></blockquote>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Steel Bridge" style="--deck:#1b1b1b"><span class="pier" style="left:10%"></span><span class="pier" style="right:24%"></span><div class="deck"></div><div class="shade"></div><h2>Steel Bridge<small>Off the clock.</small></h2></div>
+
+  <section class="chap builds" id="builds" data-from="13199" data-to="13799" aria-labelledby="t-bu">
+    <div>
+      <p class="when">Nights and weekends</p>
+      <h3 id="t-bu">Things I build</h3>
+      <ul>
+        <li><b><a href="https://harmoni.maxwellspector.com">Harmoni</a></b>An AI coach for hard conversations, grounded in Nonviolent Communication. It's my playground for building AI products end to end.</li>
+        <li><b>A homelab</b>A small server rack that runs our solar-powered house: energy, automation and the odd experiment. It's where I learn new tech by actually running it.</li>
+        <li><b>Tools and toys</b>Woodworking, a 3D printer, a mostly printed CNC router, and lately a lot of software I build with AI, including the boat on this page.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="bridge" data-bridge="Broadway Bridge" style="--deck:#b8322a"><span class="pier" style="left:12%"></span><span class="pier" style="right:22%"></span><div class="deck"></div><div class="shade"></div><h2>Broadway Bridge<small>Downtown. Easy oar.</small></h2></div>
+
+  <footer class="end" id="hello" data-from="13799" data-to="14099">
+    <h2>Say hello</h2>
+    <p>I've rowed since high school, and I'm back in a single again, a Wintech, most mornings between the Lake Oswego rail bridge and downtown. Off the water I'm raising two boys, cooking, building things, brewing, and probably starting another project. I'm always up for talking about product, climate, or rowing.</p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/maxwellspector">LinkedIn</a>
+      <a href="https://github.com/maxwellspector">GitHub</a>
+    </div>
+    <p class="credit">River geometry © OpenStreetMap contributors, ODbL.</p>
+    <div class="foot" aria-hidden="true">Maxwell Spector</div>
+  </footer>
+</main>
+
+<script>
+(function(){
+"use strict";
+// ================= river geometry (metres; x east, y north) =================
+const PTS=[[1080,-5164],[1075,-5141],[1420,-4614],[1609,-4487],[1647,-4131],[1638,-4108],[1615,-4047],[1594,-4001],[1572,-3953],[1534,-3892],[1491,-3818],[1476,-3784],[1469,-3753],[1471,-3726],[1477,-3697],[1487,-3672],[1501,-3648],[1523,-3622],[1549,-3600],[1609,-3560],[1724,-3494],[1779,-3452],[1820,-3408],[1853,-3360],[1875,-3317],[1894,-3268],[1911,-3229],[1924,-3162],[1930,-3118],[1930,-3083],[1928,-3051],[1902,-2982],[1867,-2910],[1744,-2863],[1610,-2814],[1474,-2753],[1465,-2745],[1438,-2726],[1405,-2695],[1350,-2637],[1332,-2616],[1317,-2596],[687,-1358],[340,-757],[223,-80],[188,126],[397,633],[206,966],[68,1206],[31,1405],[-45,1819],[162,2518],[297,2964],[330,3268],[356,3516],[345,3662],[333,3686],[20,4314],[-31,4472],[-60,4580],[-66,4682],[-64,4786],[-45,4886],[-9,5012],[128,5498],[158,5600],[166,5696],[187,5880],[196,6006],[191,6159],[175,6210],[151,6256],[100,6317],[62,6362],[-227,6700],[-328,6818]];
+const BR={"Lake Oswego Railroad Bridge":300,"Sellwood Bridge":5713,"Ross Island Bridge":10192,"Tilikum Crossing":10365,"Marquam Bridge":11067,"Hawthorne Bridge":11551,"Morrison Bridge":12288,"Burnside Bridge":12676,"Steel Bridge":13199,"Broadway Bridge":13799};
+const CUM=[0]; for(let i=1;i<PTS.length;i++) CUM.push(CUM[i-1]+Math.hypot(PTS[i][0]-PTS[i-1][0],PTS[i][1]-PTS[i-1][1]));
+const TOTAL=CUM[CUM.length-1];
+// The OSM centreline is sparse in places; scale along-distance so the bridge offsets (measured on the full line) land on this polyline.
+const KSCALE=TOTAL/14099;
+function pointAt(d){d=Math.max(0,Math.min(TOTAL,d*KSCALE));let i=1;while(i<CUM.length-1&&CUM[i]<d)i++;const t=(d-CUM[i-1])/(CUM[i]-CUM[i-1]||1);return [PTS[i-1][0]+(PTS[i][0]-PTS[i-1][0])*t,PTS[i-1][1]+(PTS[i][1]-PTS[i-1][1])*t];}
+
+// minimap
+const svg=document.getElementById('mapsvg');
+(function(){
+  let minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9; PTS.forEach(([x,y])=>{minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y)});
+  const pad=260; svg.setAttribute('viewBox',`${minx-pad} ${-maxy-pad} ${maxx-minx+2*pad} ${maxy-miny+2*pad}`); svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+  const d=PTS.map((p,i)=>(i?'L':'M')+p[0]+' '+(-p[1])).join(' ');
+  svg.innerHTML=`<path d="${d}" fill="none" stroke="#075a4c" stroke-width="230" stroke-linecap="round" stroke-linejoin="round"/>`+
+    Object.entries(BR).map(([n,m])=>{const [x,y]=pointAt(m);return `<rect x="${x-210}" y="${-y-45}" width="420" height="90" fill="#ffffff"/>`}).join('')+
+    `<circle id="mapdot" r="190" fill="#ffe927" stroke="#191919" stroke-width="60"/>`;
+})();
+const mapdot=document.getElementById('mapdot');
+
+// ================= boat model (boat frame: x toward bow, origin at heel) =================
+const G={L:8.2,B:0.29,hullC:0.45,pinX:0.27,pinY:0.79,inb:0.88,outb:2.0,bladeL:0.47,bladeW:0.21,
+  hipZ:0.22,heelZ:0.10,thigh:0.47,shin:0.46,torso:0.55,hipCatch:0.33,hipFinish:0.915,leanCatch:0.49,leanFinish:-0.44,armCatch:0.58,armFinish:0.31};
+const COL={sea:"#0c7866",fleck:"#0b705f",deep:"#075a4c",deep2:"#064d41",puddle:"#2c9483",foam:"#e8f5f2",
+  hull:"#f6f6f4",hullDark:"#dededb",hullEdge:"#d71e1e",alu:"#c9ced3",aluDark:"#8f969d",shaft:"#141414",grip:"#6a6a6a",blade:"#141414",tip:"#f26a1b",body:"#191919",shirt:"#f26a1b",shorts:"#141414",cap:"#141414",skin:"#d9a77f"};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t, sm=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+const DPS=9.0; // metres of run per stroke
+function driveFrac(r){return (0.98-(r-18)*0.0135)/(60/r)}
+function pose(p,D){
+  let seat,lean,arm,bladeZ,feather,q=0,inDrive=p<D;
+  if(inDrive){q=p/D;seat=sm(0,0.72,q);lean=sm(0.28,0.92,q);arm=1-sm(0.55,1,q);
+    bladeZ=q<0.5?lerp(0.02,-0.085,sm(0,0.08,q)):lerp(-0.085,0.07,sm(0.92,1,q));feather=sm(0.95,1,q)*0.15;}
+  else{const r=(p-D)/(1-D);arm=sm(0,0.22,r);lean=1-sm(0.12,0.42,r);seat=1-sm(0.36,1,r);
+    bladeZ=r<0.5?lerp(0.07,0.12,sm(0,0.12,r)):lerp(0.12,0.02,sm(0.84,1,r));feather=sm(0,0.1,r)*(1-sm(0.76,0.93,r));}
+  const hipX=lerp(G.hipCatch,G.hipFinish,seat), leanA=lerp(G.leanCatch,G.leanFinish,lean);
+  const shX=hipX-G.torso*Math.sin(leanA), handX=shX-lerp(G.armFinish,G.armCatch,arm);
+  const theta=Math.asin(clamp((G.pinX-handX)/G.inb,-1,1));
+  return {q,inDrive,hipX,leanA,shX,handX,theta,bladeZ,feather,seat};
+}
+function ik2(ax,az,bx,bz,l1,l2,pref){let dx=bx-ax,dz=bz-az,d=Math.hypot(dx,dz);
+  if(d>=l1+l2-1e-4){const t=l1/(l1+l2);return [ax+dx*t,az+dz*t];} d=Math.max(d,Math.abs(l1-l2)+1e-3);
+  const a=(l1*l1-l2*l2+d*d)/(2*d),h=Math.sqrt(Math.max(l1*l1-a*a,0)),mx=ax+dx*a/d,mz=az+dz*a/d;
+  return pref([mx+h*dz/d,mz-h*dx/d],[mx-h*dz/d,mz+h*dx/d]);}
+function halfW(x){const xc=G.hullC-0.05,xr=x-xc,half=xr>0?(G.L/2+0.05):(G.L/2-0.05),t=clamp(xr/half,-1,1);return G.B/2*Math.pow(1-t*t,0.62);}
+const hullStart=G.hullC-G.L/2, hullEnd=G.hullC+G.L/2;
+
+// ================= canvas & layout =================
+const cv=document.getElementById('river'), ctx=cv.getContext('2d');
+let W=0,H=0,DPR=1,S=60,cx=0,cy=0,narrow=false;
+function layout(){
+  DPR=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight; cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+  narrow=W<=820;
+  const boatPx=narrow?H*0.4:Math.min(H*0.6,W*0.5);
+  S=boatPx/G.L;
+  const colL=Math.max(300,W*0.30);
+  cx=narrow?W/2:Math.min(colL*0.52,W*0.2); cy=H*0.64;
+}
+addEventListener('resize',layout); layout();
+
+// ================= scroll -> travel =================
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lastScroll=scrollY, travel=scrollY, phase=0.45, rateSm=0, lastMove=performance.now(), lastT=performance.now();
+const puddles=[], wakes=[]; let wakeAcc=0; const rateHist=[]; let rateShown=0;
+const segs=[...document.querySelectorAll('[data-from]')];
+const bridgesDom=[...document.querySelectorAll('[data-bridge]')];
+
+function riverMetres(){
+  const mid=scrollY+cy; // the boat's page position
+  for(const el of segs){const top=el.offsetTop, h=el.offsetHeight; if(mid<top+h){const t=clamp((mid-top)/h,0,1); return lerp(+el.dataset.from,+el.dataset.to,t);} }
+  return 14099;
+}
+
+function toScreen(bx,by){ // boat frame -> screen (bow points down the page, port to screen-right)
+  return [cx+by*S, cy+(bx-G.hullC)*S];
+}
+
+function draw(P,now){
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.fillStyle=COL.sea; ctx.fillRect(0,0,W,H);
+  // flecks anchored to the page
+  const cell=1.6*S, y0=scrollY;
+  ctx.fillStyle=COL.fleck;
+  const r0=Math.floor(y0/cell)-1, r1=Math.ceil((y0+H)/cell)+1, cols=Math.ceil(W/cell)+1;
+  for(let r=r0;r<=r1;r++) for(let c=0;c<cols;c++){
+    const h=Math.sin(r*127.1+c*311.7)*43758.5453, f=h-Math.floor(h); if(f<0.5) continue;
+    const g=Math.sin(c*91.3+r*17.9)*24634.6345, f2=g-Math.floor(g);
+    ctx.beginPath(); ctx.ellipse(c*cell+f2*cell, r*cell+f*cell-y0, S*0.05, S*(0.25+f*0.35),0,0,Math.PI*2); ctx.fill();
+  }
+  // puddles (page-anchored twin vortices)
+  for(const pd of puddles){
+    const age=(now-pd.t)/1000, a=clamp(1-age/22,0,1); if(a<=0) continue;
+    const sx=pd.x, sy=pd.y-scrollY; if(sy<-200||sy>H+200) continue;
+    const rad=S*(0.18+Math.sqrt(Math.min(age,10))*0.12);
+    for(const k of [-1,1]){
+      const vx=sx+k*pd.ax*0.2*S, vy=sy+k*pd.ay*0.2*S, rr=rad*0.62;
+      ctx.globalAlpha=0.5*a; ctx.fillStyle=COL.deep; ctx.beginPath(); ctx.arc(vx,vy,rr,0,Math.PI*2); ctx.fill();
+      ctx.globalAlpha=0.8*a; ctx.strokeStyle=COL.puddle; ctx.lineWidth=Math.max(1,0.035*S);
+      const st=k*pd.side*age*1.4; ctx.beginPath(); ctx.arc(vx,vy,rr*0.6,st,st+Math.PI*1.3); ctx.stroke();
+    }
+  }
+  ctx.globalAlpha=1;
+  // bow wake (page-anchored ripples that spread as the boat leaves them)
+  ctx.strokeStyle=COL.puddle; ctx.lineCap="round";
+  for(const w of wakes){
+    const age=travel-w.at; const behind=age/S; const a=clamp(1-behind/12,0,1); if(a<=0) continue;
+    const off=(0.14+behind*0.2)*S, sy=w.y-scrollY;
+    ctx.globalAlpha=0.7*a; ctx.lineWidth=Math.max(1,0.03*S);
+    for(const sg of [1,-1]){ctx.beginPath(); ctx.moveTo(cx+sg*off,sy); ctx.lineTo(cx+sg*(off+0.12*S),sy-0.35*S); ctx.stroke();}
+  }
+  ctx.globalAlpha=1;
+
+  // ---- boat, drawn in boat frame rotated so bow points down ----
+  ctx.save(); ctx.translate(cx,cy); ctx.rotate(Math.PI/2);
+  const X=x=>(x-G.hullC)*S, Y=y=>-y*S;
+  // oars
+  const oar=(sd)=>{
+    const th=P.theta, dx=Math.sin(th), dy=sd*Math.cos(th), px=G.pinX, py=sd*G.pinY;
+    const hx=px-G.inb*dx, hy=py-G.inb*dy, bx0=px+(G.outb-G.bladeL)*dx, by0=py+(G.outb-G.bladeL)*dy;
+    const bcx=px+(G.outb-G.bladeL/2)*dx, bcy=py+(G.outb-G.bladeL/2)*dy, ang=Math.atan2(-dy,dx);
+    ctx.save(); ctx.translate(X(bcx),Y(bcy)); ctx.rotate(ang);
+    const l=G.bladeL*S, w=lerp(0.035,G.bladeW,P.feather)*S;
+    if(P.bladeZ<0){ const k=Math.min(1,P.q*6);
+      ctx.fillStyle=COL.deep; ctx.globalAlpha=0.7*k; ctx.beginPath(); ctx.ellipse(0,0,l*0.6,0.16*S,0,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=COL.foam; ctx.globalAlpha=0.75*k; ctx.beginPath(); ctx.ellipse(0,-sd*0.1*S,l*0.42,0.07*S,0,0,Math.PI*2); ctx.fill();
+      ctx.globalAlpha=0.55; }
+    // hatchet blade, black, orange tip triangle (mirror on the other side)
+    const m=sd; // mirror so the asymmetric edge sits the same way on both oars
+    ctx.scale(1,m);
+    ctx.fillStyle=COL.blade; ctx.beginPath();
+    ctx.moveTo(-l/2,-w*0.25); ctx.quadraticCurveTo(-l*0.1,-w*0.55,l/2,-w*0.45); ctx.lineTo(l/2,w*0.55); ctx.quadraticCurveTo(-l*0.05,w*0.55,-l/2,w*0.2); ctx.closePath(); ctx.fill();
+    if(P.feather>0.3||P.bladeZ>=0){ ctx.fillStyle=COL.tip; ctx.beginPath(); ctx.moveTo(l/2,-w*0.45); ctx.lineTo(l/2,w*0.55); ctx.lineTo(l*0.06,w*0.05); ctx.closePath(); ctx.fill(); }
+    ctx.globalAlpha=1; ctx.restore();
+    ctx.strokeStyle=COL.shaft; ctx.lineCap="round"; ctx.lineWidth=0.034*S; ctx.beginPath(); ctx.moveTo(X(hx),Y(hy)); ctx.lineTo(X(bx0),Y(by0)); ctx.stroke();
+    ctx.strokeStyle=COL.grip; ctx.lineWidth=0.042*S; ctx.beginPath(); ctx.moveTo(X(hx),Y(hy)); ctx.lineTo(X(hx+0.22*dx),Y(hy+0.22*dy)); ctx.stroke();
+    ctx.fillStyle="#2b2b2b"; ctx.fillRect(X(px)-0.05*S,Y(py)-0.05*S,0.1*S,0.1*S);
+    return {hx:hx+0.09*dx, hy:hy+0.09*dy};
+  };
+  // hull
+  ctx.fillStyle=COL.hull; ctx.beginPath(); const N=90;
+  for(let i=0;i<=N;i++){const x=lerp(hullStart,hullEnd,i/N); ctx.lineTo(X(x),Y(halfW(x)));}
+  for(let i=N;i>=0;i--){const x=lerp(hullStart,hullEnd,i/N); ctx.lineTo(X(x),Y(-halfW(x)));}
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle=COL.hullDark; ctx.beginPath(); ctx.roundRect(X(-0.32),Y(0.115),1.55*S,0.23*S,0.05*S); ctx.fill();
+  ctx.strokeStyle=COL.hullEdge; ctx.lineWidth=0.025*S;
+  ctx.beginPath(); ctx.moveTo(X(1.62),Y(0.12)); ctx.lineTo(X(2.0),Y(0)); ctx.lineTo(X(1.62),Y(-0.12)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(X(2.0),Y(0)); ctx.lineTo(X(hullEnd-0.1),Y(0)); ctx.moveTo(X(hullStart+0.1),Y(0)); ctx.lineTo(X(-0.4),Y(0)); ctx.stroke();
+  ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(X(hullEnd),Y(0),0.04*S,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle=COL.alu; ctx.lineWidth=0.045*S; ctx.lineCap="butt"; ctx.beginPath(); ctx.moveTo(X(-0.5),Y(0.14)); ctx.lineTo(X(-0.5),Y(-0.14)); ctx.stroke(); ctx.lineCap="round";
+  ctx.strokeStyle="#a9a9a5"; ctx.lineWidth=0.02*S; for(const sd of [1,-1]){ctx.beginPath();ctx.moveTo(X(0.18),Y(sd*0.065));ctx.lineTo(X(1.02),Y(sd*0.065));ctx.stroke();}
+  ctx.fillStyle="#5a5a5a"; ctx.fillRect(X(-0.06),Y(0.17),0.07*S,0.34*S);
+  ctx.fillStyle="#2b2b2b"; for(const sd of [1,-1]){ctx.beginPath();ctx.roundRect(X(-0.28),Y(sd*0.09+0.045),0.3*S,0.09*S,0.04*S);ctx.fill();}
+  // aluminium wing rigger, stern-mounted
+  ctx.lineCap="round"; ctx.lineJoin="round";
+  ctx.lineJoin="miter"; ctx.lineCap="butt";
+  for(const sd of [1,-1]){
+    // stern-mounted wing over the footstretcher: straight tube from the pin toward the stern, a hard corner, straight in to the gunwale
+    ctx.strokeStyle=COL.alu; ctx.lineWidth=0.055*S; ctx.beginPath(); ctx.moveTo(X(G.pinX),Y(sd*G.pinY));
+    ctx.lineTo(X(G.pinX-0.5),Y(sd*0.6)); ctx.lineTo(X(-0.5),Y(sd*0.14)); ctx.stroke();
+  }
+  ctx.lineJoin="round"; ctx.lineCap="round";
+  const hP=oar(1), hS=oar(-1);
+  // legs: straight and together at the finish, knees part as they rise at the catch
+  const knee=ik2(P.hipX,G.hipZ,0.02,G.heelZ,G.thigh,G.shin,(a,b)=>a[1]>b[1]?a:b);
+  const compress=1-P.seat, kneeY=0.095+0.06*compress;
+  ctx.fillStyle="#3a3a3a"; ctx.fillRect(X(P.hipX-0.13),Y(0.12),0.27*S,0.24*S);
+  ctx.strokeStyle=COL.body;
+  for(const sd of [1,-1]){
+    ctx.strokeStyle=COL.skin; ctx.lineWidth=0.1*S; ctx.beginPath(); ctx.moveTo(X(knee[0]),Y(sd*kneeY)); ctx.lineTo(X(-0.02),Y(sd*0.09)); ctx.stroke();
+    ctx.lineWidth=0.12*S; ctx.beginPath(); ctx.moveTo(X(lerp(P.hipX,knee[0],0.55)),Y(sd*lerp(0.095,kneeY,0.55))); ctx.lineTo(X(knee[0]),Y(sd*kneeY)); ctx.stroke();
+    ctx.strokeStyle=COL.shorts; ctx.lineWidth=0.14*S; ctx.beginPath(); ctx.moveTo(X(P.hipX),Y(sd*0.095)); ctx.lineTo(X(lerp(P.hipX,knee[0],0.58)),Y(sd*lerp(0.095,kneeY,0.58))); ctx.stroke();
+  }
+  ctx.fillStyle=COL.shirt; ctx.beginPath(); ctx.moveTo(X(P.hipX),Y(0.15)); ctx.lineTo(X(P.shX),Y(0.21)); ctx.lineTo(X(P.shX),Y(-0.21)); ctx.lineTo(X(P.hipX),Y(-0.15)); ctx.closePath(); ctx.fill();
+  ctx.lineWidth=0.085*S; ctx.strokeStyle=COL.shirt;
+  for(const [sd,h] of [[1,hP],[-1,hS]]){
+    const sx=P.shX, sy=sd*0.19, el=ik2(sx,sy,h.hx,h.hy,0.29,0.3,(a,b)=>Math.abs(a[1])>Math.abs(b[1])?a:b);
+    ctx.beginPath(); ctx.moveTo(X(sx),Y(sy)); ctx.lineTo(X(el[0]),Y(el[1])); ctx.lineTo(X(h.hx),Y(h.hy)); ctx.stroke();
+    ctx.fillStyle=COL.skin; ctx.beginPath(); ctx.arc(X(h.hx),Y(h.hy),0.045*S,0,Math.PI*2); ctx.fill();
+  }
+  { const hx=P.shX-0.03*Math.sign(P.leanA||1);
+    ctx.fillStyle=COL.cap; ctx.beginPath(); ctx.ellipse(X(hx-0.1),Y(0),0.07*S,0.075*S,0,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(X(hx),Y(0),0.1*S,0,Math.PI*2); ctx.fill(); }
+  ctx.restore();
+}
+
+// ================= loop =================
+const REST=0.5; // rest phase: hands away, sitting easy, blades flat on the water
+function frame(now){
+  const dtS=Math.min(0.1,(now-lastT)/1000); lastT=now;
+  const dy=scrollY-lastScroll; lastScroll=scrollY;
+  const D=driveFrac(clamp(rateSm||20,16,38));
+  if(dy!==0){
+    lastMove=now; travel+=dy;
+    const metres=dy/S;
+    const prev=phase; phase=((phase+metres/DPS)%1+1)%1;
+    // release -> puddles (forward travel only)
+    const rel=D*0.96;
+    if(metres>0 && ((prev<rel&&phase>=rel)||(prev>phase&&(prev<rel||phase>=rel)))){
+      const th=pose(rel,D).theta;
+      for(const sd of [1,-1]){
+        const bx=G.pinX+(G.outb-G.bladeL/2)*Math.sin(th), by=sd*(G.pinY+(G.outb-G.bladeL/2)*Math.cos(th));
+        const [sx,sy]=toScreen(bx,by);
+        puddles.push({x:sx,y:sy+scrollY,ax:sd*Math.cos(th),ay:Math.sin(th),side:sd,t:now});
+      }
+      while(puddles.length>40) puddles.shift();
+    }
+    wakeAcc+=Math.max(0,dy);
+    while(wakeAcc>0.5*S){wakeAcc-=0.5*S; const [,by]=toScreen(hullEnd-0.15,0); wakes.push({y:by+scrollY,at:travel});}
+    while(wakes.length>80) wakes.shift();
+  } else {
+    if(now-lastMove>450){ // drift to sitting easy
+      let d=REST-phase; if(d<0) d+=1; if(d>0.002) phase=(phase+Math.min(d,dtS*0.35))%1;
+    }
+  }
+  // stroke rate from distance covered over a rolling 1.5 s window, then eased, so wheel ticks don't make it jump
+  rateHist.push([now,travel]); while(rateHist.length>2&&now-rateHist[0][0]>1500) rateHist.shift();
+  // scroll covers water far faster than a real scull, so map speed onto a believable rate: gentle scrolling ~18-22, fast ~34-36
+  const vScroll=Math.abs(travel-rateHist[0][1])/S/1.5;
+  const winRate=vScroll<0.4?0:16+20*(1-Math.exp(-vScroll/9));
+  rateSm=lerp(rateSm,clamp(winRate,0,44),Math.min(1,dtS*2.5));
+  let P=pose(phase,D);
+  const idle=clamp((now-lastMove-450)/600,0,1);
+  if(idle>0 && Math.abs(phase-REST)<0.01){P.feather=lerp(P.feather,1,idle); P.bladeZ=lerp(P.bladeZ,0.0,idle);}
+  if(reduce){P=pose(REST,D);P.feather=1;P.bladeZ=0;}
+  draw(P,now);
+  // instruments
+  const m=riverMetres(); const [mx,my]=pointAt(m); mapdot.setAttribute('cx',mx); mapdot.setAttribute('cy',-my);
+  let next=null; for(const [n,v] of Object.entries(BR)){ if(v>m+1){next=[n,v];break;} }
+  if(now-rateShown>500){rateShown=now; document.getElementById('hRate').textContent=Math.round(rateSm);}
+  if(next){document.getElementById('hNext').textContent=next[0].replace(' Bridge','').replace('Railroad','Rail');
+    const km=(next[1]-m)/1000; document.getElementById('hDist').textContent=(km>=1?km.toFixed(1)+' km':Math.round(km*1000)+' m')+' to the bridge';}
+  else {document.getElementById('hNext').textContent='Downtown';document.getElementById('hDist').textContent='easy oar';}
+  document.documentElement.style.setProperty('--instr', scrollY>H*0.25?1:0);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
 
 </body>
-
 </html>
